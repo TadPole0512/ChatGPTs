@@ -1,0 +1,1 @@
+AI 관련한 AI 지침을 만들어줘. (THINK HARD)(THINK STEP-BY-STEP)

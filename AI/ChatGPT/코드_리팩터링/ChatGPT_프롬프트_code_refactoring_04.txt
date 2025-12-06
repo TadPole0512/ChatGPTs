@@ -1,0 +1,139 @@
+
+
+
+    - 프로그래밍 언어를 자동 인식해줘.
+	- 소스를 디자인패턴과 리팩토링을 적용하여 로직 흐름에 따라 순차적으로 새로 배치해줘
+	- 개선이 필요한 부분은 `[수정 필요]`, `[추가 필요]` 등으로 강조해서 왜 수정이나 추가가 필요한지 자세한 설명과 함께 기존 소스를 주석 처리하고 수정된 소스를 만들어줘
+	- 전체 로프세스 흐름상 삭제를 해야할 소스에는 강조된 표시와 삭제 이유 자세히 알려주고, 삭제 코드는 주석처리해줘.
+    - 예외처리가 부족한 부분에는 상세한 메시지와 함께 예외 로직을 추가해줘
+
+    - 파일 상단에 전체 로직 흐름을 `[STEP 1]`, `[STEP 2]`... 형식으로 요약해줘.
+    - 파일 하단에는 상단 흐름 요약과 연결된 전체 로직 상세 설명을 추가해줘.
+    - 함수마다 Java 스타일의 문서 주석(JavaDoc/XML)을 작성해줘.
+    - 함수 내부의 각 단계(변수 선언, 조건문, 반복문, API 호출 등)에 대해 의미 있는 설명 주석을 상세하게 추가해줘.
+    - 함수 내부의 소스의 기능이나 작업에 의미 있는 설명 주석을 상세하게 추가해줘.
+    - 들여쓰기, 정렬, 가독성 포맷을 일관되게 적용해줘.
+
+    - 소스를 생략하지 말고 바로 전체 소스를 이용할 수 있게 전체 소스 출력해줘
+
+
+
+
+
+
+훌륭합니다. 이 요청은 **코드 자동 분석 + 디자인 패턴 적용 + 리팩토링 + 코드 설명 자동화**까지 포함된 매우 구체적이고 강력한 프롬프트 목적입니다. 이에 맞는 고급 ChatGPT 프롬프트를 설계해드릴게요.
+
+우선, 아래처럼 프롬프트를 작성하면 사용자가 어떤 프로그래밍 언어로 작성된 코드든 ChatGPT가 자동 인식하고 전체 리팩토링 작업을 수행할 수 있습니다.
+
+---
+
+## ✅ 프롬프트 템플릿 for ChatGPT 프롬프트:
+
+````
+Role(역할지정):
+act as a senior software engineer and code refactoring expert
+
+Context(상황):
+- I want to automatically recognize the programming language of a given source code.
+- The code should be reorganized sequentially based on logic flow by applying appropriate design patterns and refactoring techniques.
+- Areas that need improvement should be marked with tags like [수정 필요], [추가 필요], and detailed explanations.
+- Codes that need to be removed from a logical process perspective should be commented out with reasons.
+- The code lacks exception handling in places, so proper exception logic with meaningful messages should be added.
+- At the top of the file, summarize the whole process as [STEP 1], [STEP 2], ...
+- At the bottom, provide a detailed explanation of the entire flow according to the steps above.
+- Each function must contain Java-style documentation (JavaDoc or XML).
+- Provide detailed inline comments for each part inside the functions (variable declarations, loops, conditionals, API calls, etc.).
+- Ensure consistent formatting, indentation, and readability.
+- Do not skip or truncate source – return full modified and commented source code.
+
+Input Values(입력값):
+- Source code snippet (language auto-detected)
+- Target design pattern (optional)
+- Key functionality or purpose of the code (optional)
+
+Instructions(단계별 지시사항):
+- Detect the programming language from the input source code.
+- Analyze the logic and restructure it using a relevant design pattern if applicable.
+- Mark parts needing improvements with [수정 필요], [추가 필요] along with explanations.
+- Mark deleted parts with explanation and comment them out.
+- Add proper exception handling with detailed messages.
+- Summarize the whole logic at the top as steps.
+- Provide detailed inline documentation and meaningful Java-style comments.
+- Output full formatted source code with all annotations.
+
+Constraints(제약사항):
+- answer in korean
+
+Output Indicator(출력값 지정):
+- Output format: Code + Summary + Comments
+- Output fields:
+  full_source_code: Reorganized and commented source code
+  top_summary: Step-by-step summary of logic
+  bottom_detail: Detailed explanation of each step
+- Output examples:
+
+full_source_code:
+```java
+// [STEP 1] 사용자 입력 받기
+// [STEP 2] 입력값 검증
+// [STEP 3] 결과 처리
+...
+/** 사용자 입력을 처리하는 메서드
+ * @param input 사용자 입력값
+ * @return 처리 결과
+ */
+public String handleInput(String input) {
+    // [추가 필요] 입력 null 체크가 없습니다
+    if(input == null || input.isEmpty()) {
+        throw new IllegalArgumentException("입력값이 없습니다.");
+    }
+
+    // [STEP 2] 입력값 처리
+    // 처리 로직 ...
+}
+````
+
+top\_summary:
+
+```
+[STEP 1] 사용자로부터 입력을 받는다.
+[STEP 2] 입력값의 유효성을 검증한다.
+[STEP 3] 로직을 실행하고 결과를 출력한다.
+```
+
+bottom\_detail:
+
+```
+- STEP 1: 사용자 입력을 받는 단계로, Scanner 클래스를 이용해 콘솔 입력을 처리함
+- STEP 2: 입력값이 null이거나 공백일 경우 IllegalArgumentException을 발생시켜 예외 처리
+- STEP 3: 입력값에 따라 분기 처리 후 결과를 출력
+```
+
+```
+
+---
+
+이제 실제 사용을 위해 아래 세 가지 값을 입력받고 프롬프트를 완성할 수 있습니다:
+
+### 💡 다음 세 가지 값을 하나씩 알려주세요:
+1. **소스 코드** (코드 전문 그대로 붙여주세요)
+2. **이 코드의 목적** (무엇을 하는 코드인지 간단히)
+3. **적용하고 싶은 디자인 패턴** (선택사항 / 없다면 자동 판단)
+
+어떤 코드로 시작해볼까요? 😊
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,52 @@
+
+1.  Big Topic A: Fundamental Principles * * *Big Topic B: Basic Principles
+
+    - ▷ Overview
+
+  * Background.
+
+    * Estimated answers lead to incorrect URLs/figures/code being provided.
+    * Solution: Build validation into all deliverables.
+    * Consider ChatGPT answers as a set of "Generate + Validate + Prove."
+    - Additional principles
+
+  * No assumptions: must be based on actual structure-provenance
+  * Include verification: status codes - sample runs - cross-verification required
+  * Submit proofs: Provide verification logs/examples/sources with your answer
+
+> Key takeaway: The answer must have "verification logic" embedded in the answer itself to be accepted as final.
+
+
+2. Big Topic B: Validation Logic * Cross-validation is required
+    - How to use
+
+  * ▷ URL/Link
+
+    * → Procedure
+
+      * Gather a\[href] from the actual left menu/document structure
+      * Convert relative path → absolute path
+      * Check HTTP status code (200 is adopted, 301/302 records the final URL)
+      * Provides validation results as CSV(`Section,Menu,URL,Status,FinalURL`)
+  * ▷ Numbers/Dates
+
+    * → Mathematical calculation: present step-by-step formula + input/output values
+    * → Date/Time: "YYYY-MM-DD HH\:mm (KST)" Record as absolute value
+    * → Cross-validation: Check if the result matches the actual calculation with 2\3 samples
+  * ▷ Code/SQL
+
+    * → Present 2 sample inputs + expected output
+    * → Include 1 error case (with expected message)
+    * → Specify execution environment/dependencies
+
+> Note: Validation procedures should be submitted with the deliverable.
+
+
+3. Checklist (for validation)
+
+1. URL → Status code - Did you check the final URL?
+2. numbers/dates → Absolute values, formulas, and calculations
+3. code/SQL → Sample execution - expected results - error cases included
+4. proof → CSV/log/source presented with output
+5. no missing, redundant, or presumptive statements ("probably \~", "usually \~")
+

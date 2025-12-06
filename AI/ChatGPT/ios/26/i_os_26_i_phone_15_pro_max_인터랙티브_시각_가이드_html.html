@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>iOS 26 · iPhone 15 Pro Max 시각 가이드</title>
+  <style>
+    /* --- Liquid Glass 느낌의 스타일 --- */
+    :root{
+      --bg: #0b0f14;
+      --card: rgba(255,255,255,.08);
+      --glass: rgba(255,255,255,.12);
+      --accent: #4da3ff;
+      --ok: #21c17a;
+      --warn: #ffb020;
+      --danger: #ff4d4d;
+      --muted: #a8b0bb;
+    }
+    html,body{height:100%; margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; color:#e9eef6; background: radial-gradient(1200px 800px at 10% 0%, #132033 0%, var(--bg) 45%) fixed;}
+    .glass{background:var(--glass); backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); border:1px solid rgba(255,255,255,.12); box-shadow: 0 10px 30px rgba(0,0,0,.35);}
+    header{position:sticky; top:0; z-index:50; display:flex; gap:12px; align-items:center; padding:14px 16px;}
+    .brand{font-weight:700; letter-spacing:.2px;}
+    .search{flex:1; display:flex; align-items:center; gap:8px; padding:10px 12px; border-radius:14px;}
+    .search input{flex:1; background:transparent; border:none; outline:none; color:#eef5ff; font-size:14px}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 0}
+    .chip{padding:6px 10px; border-radius:999px; background: rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.12); font-size:12px; cursor:pointer}
+    .layout{display:grid; grid-template-columns: 280px 1fr; gap:20px; padding:18px;}
+    nav{position:sticky; top:72px; height: calc(100vh - 96px); overflow:auto; border-radius:18px;}
+    nav .toc{list-style:none; padding:12px; margin:0}
+    nav .toc li{margin:6px 0}
+    nav a{color:#dbe7ff; text-decoration:none; font-size:14px}
+    nav a:hover{color:white}
+
+    .content{display:flex; flex-direction:column; gap:16px;}
+    .card{border-radius:22px; padding:18px;}
+    .kicker{color:var(--muted); font-size:12px; letter-spacing:.5px; text-transform:uppercase;}
+    .title{font-size:20px; font-weight:700; margin:6px 0 8px}
+    .meta{display:flex; gap:12px; align-items:center; font-size:12px; color:#b9c4d3}
+    .rating{display:flex; gap:2px}
+    .star{filter: drop-shadow(0 2px 6px rgba(0,0,0,.4));}
+
+    .grid{display:grid; gap:12px; grid-template-columns: repeat(2, minmax(0,1fr));}
+    .grid-3{display:grid; gap:12px; grid-template-columns: repeat(3, minmax(0,1fr));}
+    .badge{display:inline-flex; align-items:center; gap:6px; padding:6px 8px; border-radius:10px; font-size:12px; background: rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.12)}
+
+    details{border-radius:16px; padding:12px 12px; background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12)}
+    details > summary{cursor:pointer; list-style:none;}
+    details > summary::-webkit-details-marker{display:none}
+
+    ol.steps{counter-reset: step; padding-left: 18px}
+    ol.steps li{margin:8px 0;}
+    ol.steps li::marker{color:#9fc2ff}
+
+    .checklist{display:flex; flex-direction:column; gap:6px;}
+    .check{display:flex; align-items:center; gap:8px}
+    .check input{width:18px; height:18px}
+
+    .code{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: rgba(0,0,0,.35); padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.12)}
+
+    .footer{margin:24px 0 60px; color:#9fb0c5; font-size:12px}
+
+    @media (max-width: 980px){
+      .layout{grid-template-columns: 1fr}
+      nav{position:static; height:auto}
+      .grid{grid-template-columns: 1fr}
+      .grid-3{grid-template-columns: 1fr}
+    }
+  </style>
+</head>
+<body>
+  <header class="glass">
+    <div class="brand">📱 iOS 26 • iPhone 15 Pro Max 가이드</div>
+    <div class="search glass" role="search">
+      <svg width="16" height="16" fill="#cfe3ff" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" stroke="#cfe3ff" stroke-width="2" fill="none"/></svg>
+      <input id="q" placeholder="기능 검색 (예: Call Screening, Liquid Glass, 번역)" />
+    </div>
+    <div class="chips">
+      <span class="chip" data-filter="liquid">Liquid Glass</span>
+      <span class="chip" data-filter="phone">전화</span>
+      <span class="chip" data-filter="messages">메시지</span>
+      <span class="chip" data-filter="ai">Apple Intelligence</span>
+      <span class="chip" data-filter="battery">배터리</span>
+      <span class="chip" data-filter="access">손쉬운 사용</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="glass">
+      <ul class="toc" id="toc"></ul>
+    </nav>
+
+    <main class="content" id="content">
+
+      <!-- 템플릿 기반 카드: data-section 키로 빠른 필터링 지원 -->
+
+      <section class="card glass" data-tags="liquid design home lock">
+        <div class="kicker">디자인</div>
+        <div class="title" id="liquid-glass">Liquid Glass 전체 UI</div>
+        <div class="meta">
+          <span class="badge">예상 시간 · 3분</span>
+          <span class="badge">난이도 · 초급</span>
+          <span class="badge">기기 · iPhone 15 Pro Max</span>
+          <span class="badge">실용성</span>
+          <div class="rating" aria-label="실용성 별점 4/5">
+            <span class="star">⭐️⭐️⭐️⭐️☆</span>
+          </div>
+        </div>
+        <p>iOS 26의 핵심인 유리질감(반투명/굴절) 인터페이스. 홈/잠금화면, 알림, 위젯, 컨트롤 센터까지 일관된 재질감을 제공합니다.</p>
+        <div class="grid">
+          <div>
+            <h4>1) 기능 소개</h4>
+            <p>배경과 어우러지는 반투명 컨트롤·아이콘으로 가독성과 심미성을 동시에 확보.</p>
+            <h4>2) 사전 조건</h4>
+            <ul>
+              <li>iOS 26 이상</li>
+              <li>iPhone 15 Pro Max</li>
+            </ul>
+            <h4>3) 정확한 경로</h4>
+            <div class="code">홈 화면 길게 누르기 → 배경/아이콘 사용자화 · 잠금화면 길게 → 사용자화</div>
+            <h4>4) 단계별 방법</h4>
+            <ol class="steps">
+              <li>잠금화면을 길게 눌러 <b>사용자화</b> 탭을 엽니다.</li>
+              <li>사진/배경을 선택하고, 글꼴·색상·위젯을 조정합니다.</li>
+              <li>홈 화면으로 전환하여 아이콘 <b>색조/클리어</b> 스타일을 적용해봅니다.</li>
+            </ol>
+          </div>
+          <div>
+            <h4>5) 화면 요소</h4>
+            <ul>
+              <li>시간 글자: 배경 주제에 맞춰 자동 위치/크기 조정</li>
+              <li>알림/제어: 유리 패널(blur)과 라운드 모서리</li>
+            </ul>
+            <h4>6) 성공 확인</h4>
+            <div class="checklist">
+              <label class="check"><input type="checkbox"/> 홈 아이콘이 배경과 반투명하게 조화됨</label>
+              <label class="check"><input type="checkbox"/> 잠금화면의 시간이 사진 주제에 맞춰 움직임</label>
+            </div>
+            <h4>7) 문제 해결</h4>
+            <details><summary>눈 피로/어지러움</summary>
+              <div class="code">설정 → 손쉬운 사용 → 디스플레이 및 텍스트 크기 → 투명도 줄이기 / 대비 증가</div>
+            </details>
+            <h4>8) 추가 팁</h4>
+            <ul>
+              <li>어두운 배경 + 색조 아이콘 조합이 가독성↑</li>
+              <li>잠금화면 위젯 최소화로 배경 3D 효과 강조</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card glass" data-tags="phone call screening hold assist">
+        <div class="kicker">전화</div>
+        <div class="title" id="call-screening">Call Screening · Hold Assist</div>
+        <div class="meta">
+          <span class="badge">예상 시간 · 2분</span>
+          <span class="badge">난이도 · 초급</span>
+          <span class="badge">실용성</span>
+          <div class="rating"><span class="star">⭐️⭐️⭐️⭐️⭐️</span></div>
+        </div>
+        <div class="grid">
+          <div>
+            <h4>1) 소개</h4>
+            <p>모르는 번호에 용건을 먼저 받는 콜 스크리닝, 고객센터 대기 대신 알려주는 홀드 어시스트.</p>
+            <h4>2) 사전 조건</h4>
+            <ul><li>iOS 26</li><li>일부 국가/통신사 제한 가능</li></ul>
+            <h4>3) 경로</h4>
+            <div class="code">설정 → 전화 → 통화 차단 및 식별 / Call Screening / Hold Assist</div>
+            <h4>4) 단계</h4>
+            <ol class="steps">
+              <li><b>Call Screening</b> 토글을 켭니다.</li>
+              <li><b>Hold Assist</b>를 켭니다.</li>
+              <li>모르는 번호 수신 시 스크린 안내를 확인합니다.</li>
+            </ol>
+          </div>
+          <div>
+            <h4>5) 화면 요소</h4>
+            <ul><li>수신 화면에 "이름/이유 받는 중" 배너</li><li>대기 중 상단 배너(홀드 대행)</li></ul>
+            <h4>6) 성공 확인</h4>
+            <div class="checklist">
+              <label class="check"><input type="checkbox"/> 모르는 번호에 자동 안내가 동작</label>
+              <label class="check"><input type="checkbox"/> 대기 통화가 상담원 연결 시 알림으로 전환</label>
+            </div>
+            <h4>7) 문제 해결</h4>
+            <details><summary>메뉴가 보이지 않을 때</summary>
+              <div class="code">설정 상단 검색에서 "screening", "대기" 검색 → 해당 메뉴 이동</div>
+            </details>
+            <h4>8) 추가 팁</h4>
+            <ul><li>스팸 앱과 연동 시 필터링 정확도 상승</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card glass" data-tags="messages translation polls background ai">
+        <div class="kicker">메시지</div>
+        <div class="title" id="messages">메시지: 자동 번역·투표·배경</div>
+        <div class="meta"><span class="badge">예상 시간 · 3분</span><span class="badge">실용성</span><div class="rating"><span class="star">⭐️⭐️⭐️⭐️☆</span></div></div>
+        <div class="grid">
+          <div>
+            <h4>1) 소개</h4>
+            <p>대화 자동 번역, 단체 투표, 채팅 배경 사용자화.</p>
+            <h4>2) 사전 조건</h4>
+            <ul><li>iOS 26</li><li>언어팩 다운로드 필요</li></ul>
+            <h4>3) 경로</h4>
+            <div class="code">메시지 대화 → 상단 이름 → 자동 번역 / 배경</div>
+            <h4>4) 단계</h4>
+            <ol class="steps">
+              <li>대화 설정에서 <b>자동 번역</b>을 켭니다.</li>
+              <li>그룹 대화에서 <b>투표 만들기</b>를 선택합니다.</li>
+              <li><b>배경</b>을 선택해 테마를 적용합니다.</li>
+            </ol>
+          </div>
+          <div>
+            <h4>5) 화면 요소</h4>
+            <ul><li>메시지 입력창 위 번역 배지</li><li>투표 카드(실시간 집계)</li></ul>
+            <h4>6) 성공 확인</h4>
+            <div class="checklist">
+              <label class="check"><input type="checkbox"/> 외국어 메시지가 자동으로 한국어로 보임</label>
+              <label class="check"><input type="checkbox"/> 투표 결과가 실시간 업데이트</label>
+            </div>
+            <h4>7) 문제 해결</h4>
+            <details><summary>번역이 안 될 때</summary>
+              <div class="code">설정 → 일반 → 사전/언어 추가 · 네트워크/Wi‑Fi 연결 확인</div>
+            </details>
+            <h4>8) 추가 팁</h4>
+            <ul><li>이미지 생성(Image Playground)로 대화 배경 직접 제작</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card glass" data-tags="ai apple intelligence writing visual image playground genmoji">
+        <div class="kicker">Apple Intelligence</div>
+        <div class="title" id="apple-intel">쓰기 도구·시각 지능·Image Playground·Genmoji</div>
+        <div class="meta"><span class="badge">예상 시간 · 5분</span><span class="badge">요건 · 15 Pro 계열 지원</span><span class="badge">실용성</span><div class="rating"><span class="star">⭐️⭐️⭐️⭐️☆</span></div></div>
+        <div class="grid">
+          <div>
+            <h4>1) 소개</h4>
+            <p>시스템 전역의 요약/톤 변경, 사진·스크린샷 인식, 간단한 이미지 생성, 이모지 합성.</p>
+            <h4>2) 사전 조건</h4>
+            <ul><li>iOS 26</li><li>설정에서 Apple Intelligence 활성화</li></ul>
+            <h4>3) 경로</h4>
+            <div class="code">설정 → Apple Intelligence & Siri → Apple Intelligence</div>
+            <h4>4) 단계</h4>
+            <ol class="steps">
+              <li>쓰기 영역에서 제안 아이콘(✨)을 눌러 요약/톤 변경.</li>
+              <li>사진·포스터를 길게 눌러 <b>시각 지능</b> 제안을 실행.</li>
+              <li>Image Playground에서 스타일/프롬프트로 이미지 생성.</li>
+              <li>Genmoji에서 이모지 합성.</li>
+            </ol>
+          </div>
+          <div>
+            <h4>5) 화면 요소</h4>
+            <ul><li>✨ 버튼(쓰기 도구)
+            </li><li>하단 패널(시각 지능 실행)
+            </li><li>그리드 미리보기(Image Playground)
+            </li></ul>
+            <h4>6) 성공 확인</h4>
+            <div class="checklist">
+              <label class="check"><input type="checkbox"/> 메일/메모에서 요약 제안 표시</label>
+              <label class="check"><input type="checkbox"/> 스크린샷/사진에서 일정/주소 인식</label>
+            </div>
+            <h4>7) 문제 해결</h4>
+            <details><summary>버튼/제안이 안 보일 때</summary>
+              <div class="code">설정 → Apple Intelligence & Siri → 언어/다운로드 상태 확인 · 저전력 모드 해제</div>
+            </details>
+            <h4>8) 추가 팁</h4>
+            <ul><li>메시지/메모/메일 간 <b>요약→작업</b> 연결(미리 알림 만들기)</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card glass" data-tags="battery adaptive power">
+        <div class="kicker">배터리</div>
+        <div class="title" id="battery">Adaptive Power · 충전 예측</div>
+        <div class="meta"><span class="badge">예상 시간 · 1분</span><span class="badge">실용성</span><div class="rating"><span class="star">⭐️⭐️⭐️⭐️☆</span></div></div>
+        <div class="grid">
+          <div>
+            <h4>1) 소개</h4>
+            <p>사용 패턴에 맞춰 밝기/성능을 미세 조절, 잠금화면/설정에서 완충 예상 시간 표시.</p>
+            <h4>2) 사전 조건</h4>
+            <ul><li>iOS 26</li></ul>
+            <h4>3) 경로</h4>
+            <div class="code">설정 → 배터리 → 전원 모드 / Adaptive Power</div>
+            <h4>4) 단계</h4>
+            <ol class="steps">
+              <li>배터리에서 <b>Adaptive Power</b> 켭니다.</li>
+              <li>완충 예상 시간 표시를 확인합니다.</li>
+            </ol>
+          </div>
+          <div>
+            <h4>5) 화면 요소</h4>
+            <ul><li>소비 그래프(색상 강조)</li><li>완충 ETA</li></ul>
+            <h4>6) 성공 확인</h4>
+            <div class="checklist">
+              <label class="check"><input type="checkbox"/> 배터리 그래프 색상/안내 문구 표시</label>
+              <label class="check"><input type="checkbox"/> 잠금화면 충전 ETA 표시</label>
+            </div>
+            <h4>7) 문제 해결</h4>
+            <details><summary>ETA가 안 보일 때</summary>
+              <div class="code">정품/인증 충전기 사용 · 과열 시 잠시 식힌 뒤 재연결</div>
+            </details>
+            <h4>8) 추가 팁</h4>
+            <ul><li>위젯으로 배터리 상태 상시 확인</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card glass" data-tags="photos cleanup library wallet reminders preview games camera">
+        <div class="kicker">앱</div>
+        <div class="title" id="apps">사진 Clean Up · Wallet 추적 · 미리 알림 · Preview · Games · 카메라</div>
+        <div class="meta"><span class="badge">예상 시간 · 4분</span><span class="badge">실용성</span><div class="rating"><span class="star">⭐️⭐️⭐️⭐️☆</span></div></div>
+        <div class="grid">
+          <div>
+            <h4>1) 소개</h4>
+            <p>사진 지우개 품질 향상, Wallet 주문/이벤트 모아보기, 미리 알림 자동 분류, 경량 PDF/이미지 편집(Preview), 게임 허브(Games), 카메라 UI 간소화.</p>
+            <h4>2) 사전 조건</h4>
+            <ul><li>iOS 26</li></ul>
+            <h4>3) 경로</h4>
+            <div class="code">사진 → 편집 → Clean Up · 지갑 → 주문/티켓 · 미리 알림 → 스마트 리스트 · Preview 앱 · Games 앱 · 카메라</div>
+            <h4>4) 단계</h4>
+            <ol class="steps">
+              <li>사진에서 불필요 요소를 <b>Clean Up</b>으로 제거.</li>
+              <li>지갑에서 배송/티켓을 한 화면으로 모아보기.</li>
+              <li>미리 알림 자동 분류 켜기.</li>
+            </ol>
+          </div>
+          <div>
+            <h4>5) 화면 요소</h4>
+            <ul><li>브러시 선택(사진)</li><li>배송 단계 카드(지갑)</li><li>스마트 리스트(미리 알림)</li></ul>
+            <h4>6) 성공 확인</h4>
+            <div class="checklist">
+              <label class="check"><input type="checkbox"/> 지운 영역 경계 어색함 없음</label>
+              <label class="check"><input type="checkbox"/> 지갑에 주문/이벤트가 자동 카드화</label>
+            </div>
+            <h4>7) 문제 해결</h4>
+            <details><summary>Clean Up 자국 남음</summary>
+              <div class="code">작게 여러 번 지우기 · 대비 낮은 배경 선택</div>
+            </details>
+            <h4>8) 추가 팁</h4>
+            <ul><li>Games 앱에서 친구/업적 통합 관리</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card glass" data-tags="accessibility motion braille clock carplay airpods">
+        <div class="kicker">손쉬운 사용 & 주변</div>
+        <div class="title" id="access">차멀미 완화 · Braille Access · 시계 스누즈 · CarPlay · AirPods</div>
+        <div class="meta"><span class="badge">예상 시간 · 2분</span><span class="badge">실용성</span><div class="rating"><span class="star">⭐️⭐️⭐️⭐️☆</span></div></div>
+        <div class="grid">
+          <div>
+            <h4>1) 소개</h4>
+            <p>Vehicle Motion Cues(차멀미 완화), Braille Access, 시계 스누즈(1~15분), CarPlay 개선, AirPods 연동 개선.</p>
+            <h4>2) 사전 조건</h4>
+            <ul><li>iOS 26</li></ul>
+            <h4>3) 경로</h4>
+            <div class="code">설정 → 손쉬운 사용 → 동작/오디오 시각 효과 · 시계 → 알람 · CarPlay 설정 · 설정 → AirPods</div>
+            <h4>4) 단계</h4>
+            <ol class="steps">
+              <li>차멀미 완화 신호를 켭니다.</li>
+              <li>알람 스누즈 분 간격 조정.</li>
+              <li>AirPods 제스처 좌/우 별 커스터마이즈.</li>
+            </ol>
+          </div>
+          <div>
+            <h4>5) 화면 요소</h4>
+            <ul><li>가이드 점(모션 큐)</li><li>스누즈 슬라이더</li></ul>
+            <h4>6) 성공 확인</h4>
+            <div class="checklist">
+              <label class="check"><input type="checkbox"/> 스크롤 시 멀미감 완화</label>
+              <label class="check"><input type="checkbox"/> 설정한 스누즈로 정확히 울림</label>
+            </div>
+            <h4>7) 문제 해결</h4>
+            <details><summary>어지러움 지속</summary>
+              <div class="code">설정 → 디스플레이 및 텍스트 크기 → 투명도 줄이기/대비 증가</div>
+            </details>
+            <h4>8) 추가 팁</h4>
+            <ul><li>에어팟 오른쪽 길게=ANC/투명 전환, 왼쪽 2·3번=곡 제어</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card glass" data-tags="faq differences">
+        <div class="kicker">FAQ · 버전 차이</div>
+        <div class="title" id="faq">FAQ & iOS 25/26/모델별 차이</div>
+        <div class="grid">
+          <div>
+            <h4>자주 묻는 질문</h4>
+            <details><summary>업데이트 후 배터리/발열이 커졌어요</summary>
+              <p>대형 업데이트 직후 인덱싱/최적화로 일시적 증가. 며칠 내 정상화. 밤새 충전/와이파이에 두면 빠르게 안정화됩니다.</p>
+            </details>
+            <details><summary>일부 메뉴가 보이지 않아요</summary>
+              <p>지역/통신사/베타 채널에 따라 가려질 수 있습니다. 설정 상단 검색으로 바로 진입하세요.</p>
+            </details>
+          </div>
+          <div>
+            <h4>모델/버전 차이</h4>
+            <ul>
+              <li>일부 Apple Intelligence 기능은 최신 칩에서 최적화</li>
+              <li>CarPlay·통화 기능은 지역/제조사별 상이</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">본 가이드는 iOS 26(아이폰 15 Pro Max 기준)에서 실제 경로/화면 구성에 맞춰 작성되었습니다. © 2025</div>
+    </main>
+  </div>
+
+  <script>
+    // 목차 자동 생성
+    const toc = document.getElementById('toc');
+    document.querySelectorAll('.title').forEach(t=>{
+      const id = t.id;
+      const li=document.createElement('li');
+      li.innerHTML = `<a href="#${id}">• ${t.textContent}</a>`;
+      toc.appendChild(li);
+    });
+
+    // 검색/필터
+    const q = document.getElementById('q');
+    const chips = document.querySelectorAll('.chip');
+
+    function filterCards(keyword){
+      const kw = (keyword||'').toLowerCase();
+      document.querySelectorAll('section.card').forEach(sec=>{
+        const text = sec.innerText.toLowerCase();
+        sec.style.display = text.includes(kw) ? '' : 'none';
+      });
+    }
+
+    q.addEventListener('input', (e)=> filterCards(e.target.value));
+    chips.forEach(ch=> ch.addEventListener('click', ()=>{
+      q.value = ch.dataset.filter;
+      filterCards(q.value);
+    }));
+  </script>
+</body>
+</html>

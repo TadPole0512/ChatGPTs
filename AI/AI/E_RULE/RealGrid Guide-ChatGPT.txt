@@ -1,0 +1,364 @@
+요청하신 내용을 영문으로 완전 번역해 드립니다. (원문의 구조·코드·링크를 그대로 유지했어요.)
+
+---
+
+# 📊 RealGrid Usage “Accurate Answer” Pre-Brief v1.0
+
+> Purpose: Provide a **pre-brief standard + checklist + minimal runnable example** so you can get **one-shot accurate answers** when asking about RealGrid usage.
+
+---
+
+## **A. Principles & Framing**
+
+* Overview
+
+  * ▷ Background
+
+    * With RealGrid’s `DataProvider ↔ GridView` architecture, numerous options/events, and license/version issues, **questions can easily become ambiguous**.
+  * ▷ Goals
+
+    * Fix **environment, versions, data, and feature requirements** in a standard template **before** asking; attach a **minimal reproducible snippet**.
+    * Follow the core API/sequence (create Provider → create GridView → `setDataSource` → define fields/columns → set options/callbacks → inject data). ([docs.realgrid.com][1])
+
+> **Key takeaway: The most important things are “pre-brief + repro code + fixed configuration order.”**
+
+---
+
+## **B. Pre-brief Template (copy & fill)**
+
+* How to use
+
+  * ▷ Preparation
+
+    * → Paste the template **at the very top of your question** and fill in the blanks.
+  * ▷ Procedure
+
+    * → Mark unknowns as `TBD-<date>` and note alternatives/constraints as well.
+
+```md
+# [RealGrid Pre-brief]
+
+1) Purpose / Screen
+- View type: (Flat/Tree)  #rows: (avg/max)  Initial load: (pagination/infinite scroll/all)
+- Key features: (edit/grouping/frozen columns/summaries/Excel export/filter/sort/context menu, etc.)
+
+2) Tech stack / Versions
+- Framework: (Vanilla/React/Vue/Angular)
+- RealGrid version: (e.g., 2.8.x)  Loading: (CDN/NPM)
+- License application: (script lic file / using setLicenseKey)  [where the key is stored]
+
+3) Data contract
+- Data source: (REST/local/WebSocket)  Encoding/Locale: (ko-KR/UTC, etc.)
+- Schema: fields[] (fieldName, dataType), columns[] (name, fieldName, header.text, width…)
+- Key field: (id)  Edit rules: (cell/row, validation, required fields)
+
+4) Interaction / Server comms
+- Sort/filter handling: (client / server-delegated)
+- CRUD: (local edit → batch submit / immediate submit)  Tx/failure rollback policy
+
+5) UX / Policies
+- Formatting: number/date/decimal places  Shortcuts/accessibility  Scroll/cell navigation policy
+- Excel export/import: (filename/include styles/server upload)  *jszip readiness*
+
+6) Performance / Constraints
+- Targets: p95 render X ms, initial load X ms  Max rows/cols  Virtual scroll strategy
+- Memory/CPU limits, mobile support
+
+7) Repro code / data
+- Minimal HTML/JS (or React/Vue) repro + 50 rows sample data
+- Current behavior / problem description (screenshots/console logs)
+```
+
+> **Key takeaway: Locking down “version, license, load method, data contract, server delegation, performance” speeds up answers.**
+
+---
+
+## **C. Decision Tree (three question categories)**
+
+* Overview
+
+  * ▷ Classification
+
+    * A) **Basics/Initial setup**: install, license, Provider/GridView wiring, fields/columns order
+    * B) **Data/Interaction**: client vs server sort/filter/page, CRUD/validation, events
+    * C) **Output/Integration/Performance**: Excel/reporting, large-data optimization, Tree/Grouping
+* How to use
+
+  * ▷ Procedure
+
+    * → First label which branch your question belongs to, then attach evidence (code/data) per Section B.
+
+> **Key takeaway: First label the question as “setup/basics” vs “data/events” vs “output/perf.”**
+
+---
+
+## **D. Easy-to-confuse Essentials (with official docs)**
+
+* Overview
+
+  * ▷ Objects / Order
+
+    * Create **LocalDataProvider** (data) and **GridView** (view), connect with `gridView.setDataSource(provider)` → define fields/columns → set options/callbacks → call `provider.setRows(data)` (recommended order). ([docs.realgrid.com][1])
+  * ▷ Install / License
+
+    * NPM/CDN/download are all possible; **license is required**. Use a license script file or `RealGrid.setLicenseKey()`. ([docs.realgrid.com][1])
+  * ▷ Sorting / Filtering
+
+    * Sorting: `gridView.sortingOptions.enabled` / multi-sort style (`exclusive/inclusive`, etc.). ([docs.realgrid.com][2])
+    * Filtering: `gridView.setColumnFilters()`, `FilteringOptions.enabled`, etc., to configure/toggle/hide per-column filters. ([docs.realgrid.com][3])
+  * ▷ Excel Export
+
+    * Use `gridView.exportGrid({ type:"excel", ... })`; **jszip** is required (supports local/remote modes). ([docs.realgrid.com][4])
+
+> **Key takeaway: First fix “Provider↔GridView wiring” and the “sorting/filtering/export core APIs.”**
+
+---
+
+## **E. Minimal Runnable Examples (Vanilla JS / React)**
+
+* How to use
+
+  * ▷ Preparation
+
+    * → **CDN approach**: include styles/scripts (pin version or use latest), set license, then run the example. ([docs.realgrid.com][1])
+
+### 1) Vanilla HTML + JS (CDN)
+
+```html
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <!-- RealGrid CSS & JS (version-pinned example) -->
+  <link href="https://cdn.wooritech.com/realgrid/realgrid.2.8.3/realgrid-style.css" rel="stylesheet"/>
+  <script src="https://cdn.wooritech.com/realgrid/realgrid.2.8.3/realgrid.2.8.3.min.js"></script>
+  <!-- jszip for Excel export -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <style> #grid { width:100%; height:440px; } </style>
+</head>
+<body>
+  <div id="grid"></div>
+  <button id="btnExport">엑셀 내보내기</button>
+
+  <script>
+    // 1) License (required)
+    RealGrid.setLicenseKey("YOUR_LICENSE_KEY"); // use setLicenseKey or a .lic script
+
+    // 2) Create Provider & GridView and connect them
+    const provider = new RealGrid.LocalDataProvider();
+    const gridView = new RealGrid.GridView("grid");
+    gridView.setDataSource(provider); // crucial wiring
+
+    // 3) Define schema
+    provider.setFields([
+      { fieldName: "KorName", dataType: "text" },
+      { fieldName: "Gender",  dataType: "text" },
+      { fieldName: "Age",     dataType: "number" },
+      { fieldName: "Phone",   dataType: "text" }
+    ]);
+    gridView.setColumns([
+      { name: "KorName", fieldName: "KorName", width: 80, header: { text: "이름" } },
+      { name: "Gender",  fieldName: "Gender",  width: 60, header: { text: "성별" } },
+      { name: "Age",     fieldName: "Age",     width: 60, header: { text: "나이" } },
+      { name: "Phone",   fieldName: "Phone",   width: 140, header: { text: "전화번호" } }
+    ]);
+
+    // 4) Options (sorting/filtering example)
+    gridView.sortingOptions.enabled = true;         // enable sorting
+    gridView.sortingOptions.style   = "exclusive";  // last-click wins
+    gridView.filteringOptions = { enabled: true };  // enable filtering
+
+    // 5) Inject data
+    provider.setRows([
+      { KorName:"박영호", Gender:"남", Age:71, Phone:"(025)6563-2802" },
+      { KorName:"조일형", Gender:"남", Age:62, Phone:"(093)8809-8696" },
+      { KorName:"김덕중", Gender:"여", Age:53, Phone:"(064)5483-6874" },
+      { KorName:"국영석", Gender:"남", Age:63, Phone:"(044)7055-3032" }
+    ]);
+
+    // 6) Excel export (requires jszip)
+    document.getElementById("btnExport").onclick = () => {
+      gridView.exportGrid({
+        type: "excel",
+        target: "local",
+        fileName: "grid.xlsx",
+        showProgress: true
+      });
+    };
+  </script>
+</body>
+</html>
+```
+
+* The setup order, field/column structure, licensing, and Excel API align with the official flow. ([docs.realgrid.com][1])
+
+### 2) React Function Component (NPM)
+
+```bash
+npm i realgrid jszip
+```
+
+```tsx
+import { useEffect, useRef } from "react";
+import RealGrid from "realgrid";
+import JSZip from "jszip"; // reference if your bundler requires it
+
+export default function RealGridExample() {
+  const divRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    RealGrid.setLicenseKey("YOUR_LICENSE_KEY");
+
+    // Create with container ref
+    const provider = new RealGrid.LocalDataProvider();
+    const gridView = new RealGrid.GridView(divRef.current!);
+    gridView.setDataSource(provider);
+
+    provider.setFields([
+      { fieldName: "id", dataType: "text" },
+      { fieldName: "price", dataType: "number" },
+      { fieldName: "createdAt", dataType: "datetime" }
+    ]);
+    gridView.setColumns([
+      { name: "id", fieldName: "id", header: { text: "ID" }, width: 120 },
+      { name: "price", fieldName: "price", header: { text: "가격" }, width: 100, editor: { type: "number" } },
+      { name: "createdAt", fieldName: "createdAt", header: { text: "생성시각" }, width: 160 }
+    ]);
+
+    gridView.sortingOptions.enabled = true;
+    gridView.filteringOptions = { enabled: true };
+
+    provider.setRows([
+      { id: "A-100", price: 12000, createdAt: "2025-09-01T12:00:00Z" },
+      { id: "B-200", price: 9900,  createdAt: "2025-09-02T08:30:00Z" }
+    ]);
+
+    // Cleanup on unmount
+    return () => {
+      gridView.destroy();
+      provider.clearRows();
+    };
+  }, []);
+
+  return <div ref={divRef} style={{ width: "100%", height: 440 }} />;
+}
+```
+
+* NPM install/licensing/Provider↔GridView wiring & config order matches Quick Start recommendations. ([docs.realgrid.com][1])
+
+> **Note:** The official docs also mention guidance for React/Vue wrappers (contact support if needed). ([docs.realgrid.com][1])
+
+> **Key takeaway:** Always attach a **“CDN one-file” + “single React component”** minimal repro that anyone can run.
+
+---
+
+## **F. Server Delegation Policy (sorting/filtering/paging)**
+
+* Overview
+
+  * ▷ Why?
+
+    * With large datasets, doing filter/sort/page purely on the client can cause performance issues.
+* How to use
+
+  * ▷ Procedure
+
+    * → Consider server delegation beyond a **size threshold** (e.g., ≥ 50k rows).
+    * → Define a mapping table (column → API params/operators).
+    * → Grid events (filter/sort changes) → re-query server → apply via `provider.fillJsonData()` or `setRows()`.
+* Note: RealGrid provides toggles/styles/condition-based filters; when delegating, pass only the **state** to the server. ([docs.realgrid.com][2])
+
+> **Key takeaway:** First create a table that **translates grid state into server params**.
+
+---
+
+## **G. Output/Reporting & Excel Strategy**
+
+* How to use
+
+  * ▷ Preparation
+
+    * → Ensure **jszip** is included; decide filename/sheet name/style inclusion.
+    * → For remote export (server generates the file), use `target:"remote", url`.
+  * ▷ Procedure
+
+    * → Trigger `gridView.exportGrid({ type:'excel', ... })` from a button/menu.
+    * → For large data/merged cells/group summaries, consult detailed options.
+* Official guide: Excel export/remote export/option model/sample code are provided. ([docs.realgrid.com][4])
+
+> **Key takeaway:** Excel = **jszip + exportGrid options**. Remote mode is supported as well.
+
+---
+
+## **H. Repro & Debug Package Spec**
+
+* Overview
+
+  * ▷ Contents
+
+    * `index.html` (or a single React component), `data.json` (50–200 rows), **exact versions/license method**, repro steps.
+* How to use
+
+  * ▷ Procedure
+
+    * → Write **precise steps** such as “1) Click Add Column → 2) Edit → 3) Enter → 4) On focus change, error occurs.”
+    * → Include console logs/network tab captures.
+
+> **Key takeaway:** “One file + small data + step narration” makes the best bug report.
+
+---
+
+## **I. RealGrid Question Prompt Template**
+
+```md
+[Role] You are a RealGrid expert.
+[Goal] Reproduce the issue with my attached repro code/data and provide a fix.
+[Environment] Framework (React/Vanilla), RealGrid 2.x, loading (CDN/NPM), license method
+[Data contract] fields/columns definitions, key field, formats, validation rules
+[Interaction] server delegation for sort/filter/paging? CRUD policy
+[Output] Excel export requirements (filename/styles/remote)
+[Constraints] Perf target (p95), accessibility/i18n, mobile
+[Deliverables] 1) Root cause analysis 2) Fix (diff) 3) Side effects/alternatives 4) Checklist
+```
+
+> **Key takeaway:** Filling the 7 elements—**role, environment, data, interactions, output, constraints, deliverables**—boosts answer accuracy.
+
+---
+
+## **J. GUI Steps Summary (first-time setup)**
+
+* How to use
+
+  * ▷ Preparation
+
+    * → Create a DOM container → load CSS/JS (NPM/CDN) → apply license.
+  * ▷ Procedure
+
+    * → Step 1: Create `LocalDataProvider` & `GridView` → `setDataSource`
+    * → Step 2: Define `fields[]`, `columns[]`
+    * → Step 3: Set `sortingOptions/filteringOptions` and callbacks
+    * → Step 4: Bind data with `setRows()`
+    * → Step 5: Wire Excel button/menu
+    * (Same order as the official Quick Start.) ([docs.realgrid.com][1])
+
+> **Note:** With options ON, the header shows sort/filter affordances automatically (filters can also be built via `setColumnFilters`). ([docs.realgrid.com][2])
+
+---
+
+## **Checklist (Numbered)**
+
+1. Specify and apply **version/license/load method** (NPM or CDN). ([docs.realgrid.com][1])
+2. **Wire Provider↔GridView** (`setDataSource`), then define **fields/columns**. ([docs.realgrid.com][1])
+3. Decide **sorting/filtering options** and policy (client/server). ([docs.realgrid.com][2])
+4. **Inject data** (`setRows`) and confirm **key field/validation** rules. ([docs.realgrid.com][1])
+5. **Excel export**: include jszip; decide `exportGrid` options/filename/remote. ([docs.realgrid.com][4])
+6. Attach **perf/UX targets** (rows/cols/latency/mobile) and **error repro code**.
+7. Attach **console/network logs** and screenshots.
+
+—
+If you want, I can **customize the Pre-brief + minimal examples (HTML/React)** to your environment (React/Vue/Vanilla, server delegation, Excel policy) right away—just tell me your framework and RealGrid version!
+
+[1]: https://docs.realgrid.com/en/tutorial/realgrid-quickstart "Overview - RealGrid"
+[2]: https://docs.realgrid.com/en/guides/column/column-sorting "Sorting data - RealGrid"
+[3]: https://docs.realgrid.com/en/guides/column/column-filtering "Data Filtering - RealGrid"
+[4]: https://docs.realgrid.com/en/guides/excels/excel-export "excel export - RealGrid"

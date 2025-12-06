@@ -1,0 +1,576 @@
+# 🤖 RealGrid 질문 처리를 위한 AI 실행 지침 v1.0
+
+## 📋 핵심 원칙
+
+**목적**: RealGrid 사용 질문 시 정확한 답변을 위한 환경 정보, 데이터 계약, 재현 코드 요구 사항 정의  
+**적용 대상**: RealGrid 설정, 데이터 바인딩, 정렬/필터, Excel 내보내기, 성능 최적화  
+**핵심 접근법**: Pre-brief + 최소 재현 코드 + API 순서 준수
+
+---
+
+## 🎯 A. RealGrid 아키텍처 이해
+
+### 핵심 구조
+
+```
+DataProvider (데이터 계층)
+    ↕ setDataSource()
+GridView (뷰 계층)
+    ↓
+Fields (스키마 정의)
+    ↓
+Columns (표시 설정)
+    ↓
+Options (정렬/필터/편집)
+    ↓
+Data Injection (setRows)
+```
+
+### 필수 API 순서
+
+```javascript
+// 1. Provider & GridView 생성 및 연결
+const provider = new RealGrid.LocalDataProvider();
+const gridView = new RealGrid.GridView("grid");
+gridView.setDataSource(provider); // 필수 연결
+
+// 2. Fields 정의 (데이터 스키마)
+provider.setFields([...]);
+
+// 3. Columns 정의 (표시 구조)
+gridView.setColumns([...]);
+
+// 4. Options 설정 (정렬/필터/편집)
+gridView.sortingOptions = {...};
+gridView.filteringOptions = {...};
+
+// 5. 데이터 주입
+provider.setRows([...]);
+```
+
+---
+
+## 📝 B. 표준 Pre-Brief 템플릿
+
+### 필수 수집 정보
+
+```markdown
+# [RealGrid Pre-brief]
+
+1) 목적/화면
+- 뷰 타입: Flat / Tree
+- 행 수: 평균 X, 최대 Y
+- 초기 로드: 페이지네이션 / 무한스크롤 / 전체
+- 주요 기능: 편집/그룹핑/고정컬럼/합계/Excel내보내기/필터/정렬/컨텍스트메뉴 등
+
+2) 기술 스택/버전
+- Framework: Vanilla / React / Vue / Angular
+- RealGrid 버전: 2.8.x
+- 로딩 방식: CDN / NPM
+- 라이선스 적용: setLicenseKey / .lic 스크립트
+
+3) 데이터 계약
+- 데이터 소스: REST / Local / WebSocket
+- 인코딩/로케일: ko-KR / UTC
+- 스키마:
+  * fields[]: fieldName, dataType
+  * columns[]: name, fieldName, header.text, width
+- 키 필드: id
+- 편집 규칙: cell/row, validation, required
+
+4) 상호작용/서버 통신
+- 정렬/필터 처리: 클라이언트 / 서버 위임
+- CRUD: 로컬 편집→일괄 제출 / 즉시 제출
+- 트랜잭션/실패 롤백 정책
+
+5) UX/정책
+- 포매팅: 숫자/날짜/소수점
+- 단축키/접근성
+- 스크롤/셀 네비게이션 정책
+- Excel 내보내기/가져오기: 파일명/스타일포함/서버업로드
+  * jszip 준비 여부
+
+6) 성능/제약
+- 목표: p95 렌더링 X ms, 초기 로드 Y ms
+- 최대 행/열 수
+- 가상 스크롤 전략
+- 메모리/CPU 제한, 모바일 지원
+
+7) 재현 코드/데이터
+- 최소 HTML/JS (또는 React/Vue) 재현 코드
+- 50행 샘플 데이터
+- 현재 동작/문제 설명 (스크린샷/콘솔 로그)
+```
+
+---
+
+## 🗂️ C. 질문 분류 체계
+
+### 카테고리 레이블
+
+```
+A) 기본/초기설정:
+   - 설치, 라이선스, Provider/GridView 연결
+   - fields/columns 정의 순서
+
+B) 데이터/상호작용:
+   - 클라이언트 vs 서버 정렬/필터/페이지
+   - CRUD/검증, 이벤트 핸들링
+
+C) 출력/통합/성능:
+   - Excel/리포팅
+   - 대용량 데이터 최적화
+   - Tree/Grouping
+```
+
+**사용법**: 질문 첫 줄에 카테고리 표기 → "setup" vs "data/events" vs "output/perf"
+
+---
+
+## 🔧 D. 핵심 API 패턴
+
+### 1. 객체 생성 및 연결
+
+```javascript
+// 필수 순서
+const provider = new RealGrid.LocalDataProvider();
+const gridView = new RealGrid.GridView("grid");
+gridView.setDataSource(provider); // 핵심 연결
+```
+
+### 2. 라이선스 적용
+
+```javascript
+// 방법 1: setLicenseKey
+RealGrid.setLicenseKey("YOUR_LICENSE_KEY");
+
+// 방법 2: .lic 스크립트 파일
+<script src="realgrid-lic.js"></script>
+```
+
+### 3. 정렬 설정
+
+```javascript
+gridView.sortingOptions = {
+  enabled: true,
+  style: "exclusive"  // "exclusive" | "inclusive"
+};
+```
+
+### 4. 필터 설정
+
+```javascript
+gridView.filteringOptions = {
+  enabled: true
+};
+
+// 컬럼별 필터 설정
+gridView.setColumnFilters([...]);
+```
+
+### 5. Excel 내보내기
+
+```javascript
+// jszip 필수
+gridView.exportGrid({
+  type: "excel",
+  target: "local",      // "local" | "remote"
+  fileName: "grid.xlsx",
+  showProgress: true
+});
+```
+
+---
+
+## 🧪 E. 최소 재현 예제
+
+### 1) Vanilla HTML + JS (CDN)
+
+```html
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <link href="https://cdn.wooritech.com/realgrid/realgrid.2.8.3/realgrid-style.css" rel="stylesheet"/>
+  <script src="https://cdn.wooritech.com/realgrid/realgrid.2.8.3/realgrid.2.8.3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <style> #grid { width:100%; height:440px; } </style>
+</head>
+<body>
+  <div id="grid"></div>
+  <button id="btnExport">엑셀 내보내기</button>
+
+  <script>
+    // 1. 라이선스 (필수)
+    RealGrid.setLicenseKey("YOUR_LICENSE_KEY");
+
+    // 2. Provider & GridView 생성 및 연결
+    const provider = new RealGrid.LocalDataProvider();
+    const gridView = new RealGrid.GridView("grid");
+    gridView.setDataSource(provider);
+
+    // 3. 스키마 정의
+    provider.setFields([
+      { fieldName: "KorName", dataType: "text" },
+      { fieldName: "Gender",  dataType: "text" },
+      { fieldName: "Age",     dataType: "number" },
+      { fieldName: "Phone",   dataType: "text" }
+    ]);
+    
+    gridView.setColumns([
+      { name: "KorName", fieldName: "KorName", width: 80, header: { text: "이름" } },
+      { name: "Gender",  fieldName: "Gender",  width: 60, header: { text: "성별" } },
+      { name: "Age",     fieldName: "Age",     width: 60, header: { text: "나이" } },
+      { name: "Phone",   fieldName: "Phone",   width: 140, header: { text: "전화번호" } }
+    ]);
+
+    // 4. 옵션 설정
+    gridView.sortingOptions.enabled = true;
+    gridView.sortingOptions.style = "exclusive";
+    gridView.filteringOptions = { enabled: true };
+
+    // 5. 데이터 주입
+    provider.setRows([
+      { KorName:"박영호", Gender:"남", Age:71, Phone:"(025)6563-2802" },
+      { KorName:"조일형", Gender:"남", Age:62, Phone:"(093)8809-8696" },
+      { KorName:"김덕중", Gender:"여", Age:53, Phone:"(064)5483-6874" },
+      { KorName:"국영석", Gender:"남", Age:63, Phone:"(044)7055-3032" }
+    ]);
+
+    // 6. Excel 내보내기
+    document.getElementById("btnExport").onclick = () => {
+      gridView.exportGrid({
+        type: "excel",
+        target: "local",
+        fileName: "grid.xlsx",
+        showProgress: true
+      });
+    };
+  </script>
+</body>
+</html>
+```
+
+### 2) React Function Component (NPM)
+
+```bash
+npm i realgrid jszip
+```
+
+```tsx
+import { useEffect, useRef } from "react";
+import RealGrid from "realgrid";
+
+export default function RealGridExample() {
+  const divRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    RealGrid.setLicenseKey("YOUR_LICENSE_KEY");
+
+    const provider = new RealGrid.LocalDataProvider();
+    const gridView = new RealGrid.GridView(divRef.current!);
+    gridView.setDataSource(provider);
+
+    provider.setFields([
+      { fieldName: "id", dataType: "text" },
+      { fieldName: "price", dataType: "number" },
+      { fieldName: "createdAt", dataType: "datetime" }
+    ]);
+    
+    gridView.setColumns([
+      { name: "id", fieldName: "id", header: { text: "ID" }, width: 120 },
+      { name: "price", fieldName: "price", header: { text: "가격" }, width: 100, 
+        editor: { type: "number" } },
+      { name: "createdAt", fieldName: "createdAt", header: { text: "생성시각" }, 
+        width: 160 }
+    ]);
+
+    gridView.sortingOptions.enabled = true;
+    gridView.filteringOptions = { enabled: true };
+
+    provider.setRows([
+      { id: "A-100", price: 12000, createdAt: "2025-09-01T12:00:00Z" },
+      { id: "B-200", price: 9900,  createdAt: "2025-09-02T08:30:00Z" }
+    ]);
+
+    return () => {
+      gridView.destroy();
+      provider.clearRows();
+    };
+  }, []);
+
+  return <div ref={divRef} style={{ width: "100%", height: 440 }} />;
+}
+```
+
+---
+
+## 📊 F. 서버 위임 정책 (정렬/필터/페이징)
+
+### 서버 위임 시점 결정
+
+```yaml
+임계값: 50,000행 이상
+방식: 그리드 상태 → 서버 API 파라미터 변환
+
+구현 패턴:
+1. 그리드 이벤트 감지:
+   - onSortChanged
+   - onFilterChanged
+   - onPageChanged
+
+2. 상태 → API 파라미터 매핑:
+   - column → sortField
+   - ascending → sortOrder
+   - filterConditions → where clauses
+
+3. 서버 재조회:
+   - fetch(apiUrl + params)
+   - provider.fillJsonData() 또는 setRows()
+```
+
+### 매핑 테이블 예시
+
+```javascript
+const stateToApiParams = {
+  sort: (sortState) => ({
+    sortField: sortState.fieldName,
+    sortOrder: sortState.ascending ? 'ASC' : 'DESC'
+  }),
+  filter: (filterState) => ({
+    field: filterState.name,
+    operator: filterState.operator, // 'contains', '>=', etc.
+    value: filterState.value
+  })
+};
+```
+
+---
+
+## 📤 G. Excel 내보내기 전략
+
+### 필수 준비사항
+
+```yaml
+jszip: 필수 라이브러리
+  - CDN: <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  - NPM: npm i jszip
+
+exportGrid 옵션:
+  type: "excel"
+  target: "local" | "remote"
+  fileName: "파일명.xlsx"
+  showProgress: true/false
+  indicatorColumn: true/false  # 행 번호 포함
+  footerColumns: true/false    # 푸터 포함
+```
+
+### Local vs Remote
+
+```javascript
+// Local: 클라이언트에서 파일 생성
+gridView.exportGrid({
+  type: "excel",
+  target: "local",
+  fileName: "export.xlsx"
+});
+
+// Remote: 서버에서 파일 생성
+gridView.exportGrid({
+  type: "excel",
+  target: "remote",
+  url: "/api/excel-export",
+  fileName: "export.xlsx"
+});
+```
+
+---
+
+## 🔍 H. 디버그 패키지 사양
+
+### 필수 포함 항목
+
+```yaml
+재현 코드:
+  - index.html (Vanilla) 또는 단일 컴포넌트 (React/Vue)
+  - 50-200행 샘플 데이터 (data.json)
+
+환경 정보:
+  - RealGrid 버전 (정확한 버전 번호)
+  - 로딩 방식 (CDN URL 또는 NPM 버전)
+  - 라이선스 적용 방법
+  - Framework 및 버전
+
+재현 단계:
+  - 1) 컬럼 추가 클릭
+  - 2) 편집 모드 진입
+  - 3) 엔터 입력
+  - 4) 포커스 이동 시 오류 발생
+
+로그:
+  - 콘솔 에러 메시지 전체
+  - 네트워크 탭 캡처 (API 호출 있는 경우)
+  - 스크린샷
+```
+
+---
+
+## 🎯 I. 질문 프롬프트 템플릿
+
+```markdown
+[역할] RealGrid 전문가
+
+[목표] 첨부된 재현 코드/데이터로 문제 재현 후 수정 방법 제공
+
+[환경]
+- Framework: React / Vanilla
+- RealGrid 버전: 2.8.x
+- 로딩 방식: CDN / NPM
+- 라이선스 방법: setLicenseKey / .lic
+
+[데이터 계약]
+- fields/columns 정의
+- 키 필드
+- 포맷, 검증 규칙
+
+[상호작용]
+- 정렬/필터/페이징 서버 위임 여부
+- CRUD 정책
+
+[출력]
+- Excel 내보내기 요구사항 (파일명/스타일/remote)
+
+[제약]
+- 성능 목표 (p95)
+- 접근성/i18n
+- 모바일 지원
+
+[산출물]
+1. 근본 원인 분석
+2. 수정 방법 (diff)
+3. 부작용/대안
+4. 체크리스트
+```
+
+---
+
+## 📋 J. GUI 설정 절차
+
+### 초기 설정 순서
+
+```yaml
+Step 1: DOM 컨테이너 준비
+  - <div id="grid"></div>
+
+Step 2: CSS/JS 로드
+  - CDN 또는 NPM import
+  - jszip 포함 (Excel 사용 시)
+
+Step 3: 라이선스 적용
+  - RealGrid.setLicenseKey() 또는 .lic 스크립트
+
+Step 4: Provider & GridView 생성 및 연결
+  - new LocalDataProvider()
+  - new GridView()
+  - setDataSource()
+
+Step 5: 스키마 정의
+  - setFields([])
+  - setColumns([])
+
+Step 6: 옵션 설정
+  - sortingOptions
+  - filteringOptions
+  - 콜백 등록
+
+Step 7: 데이터 바인딩
+  - setRows([])
+
+Step 8: Excel 버튼/메뉴 연결
+  - exportGrid()
+```
+
+---
+
+## ✅ 최종 검증 체크리스트
+
+```
+1. [ ] 버전/라이선스/로드방식 (NPM/CDN) 명시 및 적용
+2. [ ] Provider↔GridView 연결 (setDataSource), fields/columns 정의
+3. [ ] 정렬/필터 옵션 및 정책 (클라이언트/서버) 결정
+4. [ ] 데이터 주입 (setRows), 키 필드/검증 규칙 확인
+5. [ ] Excel 내보내기: jszip 포함, exportGrid 옵션/파일명/remote 결정
+6. [ ] 성능/UX 목표 (행/열/지연시간/모바일) 및 에러 재현 코드 첨부
+7. [ ] 콘솔/네트워크 로그 및 스크린샷 첨부
+```
+
+---
+
+## 🚫 금지 패턴
+
+```
+❌ "버전 명시 없이" 질문
+❌ "setDataSource 없이" fields/columns 정의
+❌ "jszip 없이" Excel 내보내기 시도
+❌ "재현 코드 없이" "안 됩니다" 만 전달
+❌ "정렬/필터 옵션 미설정 상태에서" 작동 안 한다고 보고
+```
+
+---
+
+## 📌 AI 답변 생성 규칙
+
+### 답변 구조
+
+```markdown
+## [증상 확인]
+사용자가 보고한 증상 요약 (1-2문장)
+
+## [근본 원인]
+- Provider↔GridView 연결 누락
+- fields/columns 정의 순서 오류
+- 라이선스 미적용
+- jszip 미포함 (Excel 내보내기 시)
+
+## [해결 단계]
+### Step 1: setDataSource 확인
+gridView.setDataSource(provider);
+
+### Step 2: 순서 교정
+1) setFields([])
+2) setColumns([])
+3) setRows([])
+
+### Step 3: 검증
+콘솔에서 에러 없이 그리드 렌더링 확인
+
+## [대안]
+- React: useEffect cleanup으로 destroy() 호출
+- Vue: onUnmounted에서 정리
+- 서버 위임: 50k행 이상 시 권장
+
+## [재발 방지 체크리스트]
+- [ ] API 순서 준수 (Provider→GridView→setDataSource→fields→columns→data)
+- [ ] 라이선스 최상단 적용
+- [ ] jszip CDN/NPM 포함
+- [ ] 콘솔 에러 확인
+```
+
+---
+
+## 💡 핵심 요약
+
+**정확한 답변을 위한 7대 요소**:
+1. **환경 고정**: Framework/버전/로딩방식/라이선스
+2. **API 순서**: Provider→GridView→setDataSource→fields→columns→options→data
+3. **데이터 계약**: fields/columns 스키마, 키 필드, 검증 규칙
+4. **서버 위임**: 50k행 기준, 상태→API 매핑 테이블
+5. **Excel 전략**: jszip + exportGrid 옵션 (local/remote)
+6. **재현 코드**: CDN 단일 파일 + React 단일 컴포넌트
+7. **디버그 패키지**: 로그 + 스크린샷 + 50행 샘플
+
+**답변 품질 기준**:
+- 모든 코드는 실행 가능해야 함
+- API 순서 준수 확인
+- 대안 2-3개 제시 (클라이언트/서버, Vanilla/React)
+- 재발 방지 체크리스트 필수

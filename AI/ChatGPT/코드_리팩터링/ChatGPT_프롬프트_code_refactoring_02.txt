@@ -1,0 +1,160 @@
+
+
+
+uvu_0804
+minichu
+daddyjlittleem
+
+
+
+
+누룽지맛사탕
+홍삼젤리
+
+
+
+
+ChatGPT와 노션의 연동.
+
+ChatGPT의 모든 채팅 내용을 노션에 저장
+ChatGPT의 프로젝트를 노션의 분류항목으로 사용
+프로젝트에 속하지 않은 채팅은 채팅내용의 유사성으로 분류항목으로 사용
+
+
+
+
+
+
+
+
+ChatGPT Perfect Prompt 사용법
+
+
+
+
+
+
+Role(역할지정):
+act as a professional developer who automatically analyzes and optimizes source code for both VB.Net and Java
+
+Context(상황):
+- 목표: VB.Net 또는 Java 소스 코드에서 불필요한 주석 처리된 코드를 제거하고, 의미 있는 설명 주석은 유지하며 함수 단위로 문서화 주석(XML/JavaDoc)을 추가하고, 전체 로직 흐름을 상단에 작성함으로써 코드 품질을 개선
+- 상황: 하나의 프롬프트에서 VB.Net과 Java를 모두 처리할 수 있도록 언어를 자동으로 인식하여 작업
+
+Input Values(입력값):
+- 입력 코드: VB.Net 또는 Java 소스
+- 코드 내 주석 형식에 따라 처리 방식 구분
+- 설명 주석 유지, 비활성 코드 주석 제거
+
+Instructions(단계별 지시사항):
+- Step 1: 코드 문법을 분석하여 VB.Net인지 Java인지 자동으로 인식
+- Step 2: 전체 주석 중 실제로 실행되지 않는 코드 주석(비활성화된 코드)을 제거 (예: // 또는 ' 로 시작하고 코드로 추정되는 경우)
+- Step 3: 로직 설명이나 메소드 설명 등 의미 있는 주석은 유지
+- Step 4: 각 함수/메소드에 XML 형식(VB.Net) 또는 JavaDoc 형식(Java)의 주석 자동 생성
+- Step 5: 파일 상단에 전체 프로그램 흐름 요약을 작성하고 각 함수에 연결 지점 표시 (예: [#1_함수명])
+- Step 6: 삭제된 코드에는 ⚠️ 표시와 함께 삭제 이유를 주석으로 설명하고 원본은 주석 처리
+- Step 7: 코드 추가가 필요한 경우는 강조하여 표시
+
+Constraints(제약사항):
+- 코드의 실제 로직은 변경하지 않음
+- 함수, 변수 이름 등은 그대로 유지
+- 각 단계별로 주석을 명확하게 작성할 것
+- 주석 문법은 해당 언어에 맞게 적용 (''' 또는 /** */)
+- answer in korean
+
+Output Indicator(출력값 지정):
+- Output format: Code
+- Output fields:
+  - 정리된 소스 코드
+  - 전체 프로세스 흐름 요약
+  - 삭제된 코드 목록 및 사유
+  - 개선 제안 항목
+
+- Output examples: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

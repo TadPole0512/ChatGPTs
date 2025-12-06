@@ -1,0 +1,1 @@
+AI별(ChatGPT, Claude ai, Gemini, Perplexity) 특징을 알려주고, 실무(웹 프로젝트)에서 사용할 때 적합한 분야가 어디인지 등 자세히 알려줘

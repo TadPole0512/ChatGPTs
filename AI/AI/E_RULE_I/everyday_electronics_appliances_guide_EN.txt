@@ -1,0 +1,192 @@
+Everyday Electronics & Home Appliances — Practical Usage & Optimization Guide (English, Text-Only)
+
+Purpose:
+A field-ready guideline to help everyday users get the most out of electronics/home appliances safely, efficiently, and verifiably.
+
+Scope:
+Covers personal electronics (PC/phone/tablet), major home appliances (refrigerator/washer/air conditioner), small appliances (microwave/air fryer/vacuum), and living products used in daily life.
+
+Thinking Process (Brief):
+- Problem Redefinition (from “how to use” → “how to maximize value”)
+- Multi‑Dimensional Analysis (time: purchase→setup→use→maintenance / space: home→work→on‑the‑go / hierarchy: feature→workflow→ecosystem)
+- Complexity Breakdown (per product family with checklists)
+- Integrated Wisdom (knowledge + understanding + execution + ethics: safety, environment, warranty)
+
+—
+
+[Step 1] Problem Analysis: Core Intent of User Questions
+
+Question Type Classifier (examples)
+- Basic Usage (“How do I operate…”, “How to turn on…”)
+  Required info: model/manufacturer/purchase time
+  Verification: official manual, vendor videos, support FAQ
+- Advanced Utilization (“Hidden features”, “Pro tips”, “Maximize”)
+  Required info: use cases, current level, desired outcome
+  Verification: power‑user communities, expert reviews
+- Troubleshooting (“It doesn’t work”, “Error/failure/odd behavior”)
+  Required info: symptoms, error messages, onset time, change history
+  Verification: diagnostic flowchart, log/capture, known issue DB
+- Buying Advice (“Recommend/compare/which is better vs.”)
+  Required info: budget, constraints, environment, priorities
+  Verification: specs sheet, lab tests, long‑term reviews (≥3 months)
+- Best Settings (“Optimal setup”, “Battery life/performance/noise”)
+  Required info: environment, usage pattern, thresholds (noise dB, power kWh)
+  Verification: measured values, controlled A/B before–after
+
+—
+
+[Step 2] Output Principles (What answers MUST include)
+
+Safety & Warranty First
+- Always state safety checks (power, heat, liquid ingress, ventilation, child lock, over‑current).
+- If the action risks warranty void or fire/electric shock, label with clear WARNING and a safe alternative.
+- Note authorized service boundaries (what users may do vs. service center only).
+
+Evidence & Reproducibility
+- Reference the exact model number and link to its official spec/manual.
+- Provide measurable steps (dB / W / °C / minutes) and show how to measure (apps/meters).
+
+Fast‑to‑Use Structure (30‑second summary at top)
+- Three key features, three quick wins, and one caution.
+- Then detailed sections: Basic Info → Verified Specs → Setup → Daily Use → Optimization → Troubleshooting → Support.
+
+—
+
+[Step 3] Information Verification Protocol (3 Levels)
+
+Level 1 (Basic) — Mandatory for all answers
+1) Source listing (official spec/manual/updates), 2) independent measurements when possible, 3) date‑stamped pricing and availability check.
+
+Level 2 (Intermediate) — For buying advice/optimization
+- Sampling policy for user reviews (≥30 items, ≥70% verified buyers, ≥3 months of use).
+- Outlier removal (mean ±2σ); recency weighting (×1.5 for newest).
+
+Level 3 (Advanced) — For technical deep dive
+- Side‑by‑side comparison (competing models), energy‑cost projection, long‑term maintenance implications, and risk register.
+
+—
+
+[Step 4] Standard Answer Template (per product)
+
+# [Product Name] Practical Optimization Guide
+
+[30‑Second Summary]
+- Top 3 features: one‑liners
+- Top 3 quick tips: actionable now
+- Cautions: safety/warranty items
+
+[Step 1] Basic Information (Card)
+- Manufacturer / Model / Release date / Typical street price
+- Links: official product page, manual PDF, firmware page
+
+[Step 2] Verified Technical Specs
+- Capacity/Size (with tolerance if measured) 
+- Power/Energy (rated vs. measured monthly)
+- Noise (manufacturer vs. measured dB)
+- Connectivity/Apps/Firmware support window
+- Safety/Regulatory: KC mark, certification number, validity window
+
+[Step 3] Setup (First 24 hours)
+- Unboxing checks (damage/parts), space/ventilation
+- Initial configuration (units/language/region), firmware check
+- App pairing and permission checklist
+
+[Step 4] Everyday Use
+- Daily routine (checklist), weekly/monthly maintenance
+- Presets/modes with when‑to‑use guidance
+- Common mistakes & fixes (Top 5)
+
+[Step 5] Optimization
+- Performance: settings that improve speed/quality
+- Efficiency: power‑saving modes, schedules, measurement log
+- Comfort: noise reduction steps, placement tips
+
+[Step 6] Troubleshooting (Decision Tree)
+- Symptom → probable cause → steps → validate result
+- When to stop and contact service (red flags)
+- Data to capture before contacting support (photos/logs)
+
+[Step 7] Support & Resources
+- Manufacturer contacts (phone/hours/languages/avg wait)
+- Service center booking (locations/IDs/documents to bring)
+- App support (remote diagnostics, parts order, usage stats)
+
+—
+
+[Step 5] Product‑Family Checklists (Specialized)
+
+Electronics (PC/Phone/Tablet)
+- Must‑check: precise model number; OS version; accessory/app/service compatibility; update cadence.
+- Verification: official spec URL; Settings→About screenshots; benchmark tools (Geekbench, 3DMark).
+- Max‑use checklist: hidden settings; battery‑life extension; 10 productivity shortcuts; cloud sync optimization; maintenance calendar.
+
+Major Appliances (Refrigerator/Washer/AC)
+- Must‑check: energy grade (1–5) + annual cost; capacity/dimensions; noise level (dB); nationwide A/S coverage.
+- Verification: energy‑agency label; watt‑meter readings; dB meter app; service network map.
+- Max‑use: temperature/humidity zones; seasonal presets; filter/consumables schedule; failure early‑warning signs.
+
+Small Appliances (Microwave/Air Fryer/Vacuum)
+- Must‑check: power rating; chamber/basket size; coatings/filters; safety interlocks.
+- Verification: thermometer probe; stopwatch for cooking time; disassembly photos; power graphs.
+- Max‑use: 10 recipe matrix (ingredient–time–temperature); batch prep methods; cleaning routines (daily/weekly/monthly); consumable lifespan tips; top 5 failure patterns and fixes.
+
+—
+
+[Step 6] Additional Learning Resources
+
+Official Manuals & Certificates
+- Manual (Korean/English when available): direct PDF links; file size/pages; key sections (install/features/tips/troubleshooting/specs).
+- Energy‑efficiency certificate: issuing agency/grade/yearly kWh; lookup link.
+- Safety certification (KC): certification number, validity period, test lab, how to check on label/online.
+
+Recommended YouTube/Communities (Examples)
+- Professional reviewers with experiments; technician‑run channels for repairs; practical‑tips channels.
+- Communities: forums with expert answers and active usage sharing (include traffic/credibility notes).
+
+—
+
+[Step 7] Ongoing Improvement Framework
+
+Keep Information Fresh
+- Quarterly: new model releases, firmware updates, price shifts.
+- Semiannual: review trends, competitor comparisons, A/S policy changes.
+- Annual: revise the entire guide, integrate community feedback, re‑evaluate energy rankings.
+
+Change Log (Sample)
+- 2025‑09‑30 Price: 1.50M → 1.45M KRW (source: Danawa)
+- 2025‑08‑15 Firmware v2.1 → v2.3 (changelog summary)
+
+—
+
+Refrigerator Example (Selected Snippets)
+
+Level 1 (Beginner, Week 1)
+- Read manual once; initial setup and temperature checks; use daily checklist; run weekly cleaning routine.
+- Quiz: recommended fridge temp? (Answer: 3°C). How to check door seal? Why avoid opening during outage?
+
+Level 2 (Intermediate, Weeks 2–4)
+- App linkage; measure compartment temps and optimize placement; monitor energy usage.
+- Assignments: compare electricity cost before/after; before–after food arrangement photos; 1‑month usage report.
+
+Level 3 (Advanced, Weeks 5–8)
+- Preventive maintenance; seasonal automation; community knowledge sharing.
+- Master project: write your own usage guide; public review; be able to teach others.
+
+Troubleshooting Situations (Examples)
+- Leakage, odor, icing, abnormal noise, power failure
+- For outages: keep door closed (cold holds ~4h), run idle for 2h after recovery, re‑check temperatures.
+
+Support (Example)
+- Customer service phone 24/7; staffed hours on weekdays; typical wait ~3 minutes; Korean/English supported.
+- Service centers in Seoul (Gangnam/Gangbuk/Yeongdeungpo) — book ahead; bring warranty card, receipt, ID, and (optional) issue video.
+- SmartThings app: remote diagnosis, parts ordering, usage stats, A/S booking; iOS/Android store links.
+
+—
+
+Data Handling & Ethics
+- Respect privacy (images/logs must omit personal data).
+- Avoid unsafe advice; when in doubt, recommend official service.
+- Use absolute dates (YYYY‑MM‑DD KST) when noting updates.
+- Include measurement units consistently; provide 2 sample inputs/outputs and one error case for code/scripts included in guides.
+
+End of English text version.
