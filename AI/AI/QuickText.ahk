@@ -33,12 +33,24 @@
 }
 
 ^!3:: {
-    text := "이유림 수석님 아래의 내용 개발서버에 반영했습니다. 확인 부탁드립니다.`n`n"
-    InsertText(text)
+	; [설정] 딜레이가 작동하도록 모드를 'Event'로 변경 (기본 Input 모드는 딜레이 무시함)
+	SendMode "Event"
+	SetKeyDelay 50, 50  ; 누르기 전 지연 50ms, 누른 상태 유지 50ms (한 번만 설정하면 됨)
+
+	; [실행]
+	Send "hsg"
+	Send "{Tab}"
+
+	; 중요: 특수문자(#, !, ^, +)가 포함된 텍스트는 SendText를 쓰는 것이 안전합니다.
+	; (그냥 Send를 쓰면 #을 윈도우 키로 인식해버릴 수 있음)
+	SendText "CheolWone3E#" 
+
+	Send "{Tab}"
+	Send "{Enter}"
 }
 
 ^!4:: {
-    text := "개발서버에 배포하겠습니다.`n`n"
+    text := "`n`n`n`n`n`n`n`n`n"
     InsertText(text)
 }
 
@@ -51,7 +63,7 @@
 }
 
 ^!7:: {
-    InsertText("CheolWone3E#")
+    InsertText("`n`n`n`n`n`n`n`n`n")
 }
 
 ; ===== 날짜 입력 =====
@@ -63,49 +75,15 @@
     Send(FormatTime(, "yyyy-MM-dd"))
 }
 
-^!0:: {
-    InsertText(FormatTime(, "yyyy-MM-dd") " hsg ")
-}
+;^!0:: {
+;    InsertText(FormatTime(, "yyyy-MM-dd") " hsg ")
+;}
 
 ; ===== 구분선/주석 =====
 ^!-:: {
     Send("---------------------------------------------------------------------`n")
 }
-
-^!':: {
-    Send("/* ******************************************************************************************************************************* */`n")
-}
-
-^!;:: {
-    Send("/* ***********  *********** */`n;`n")
-}
-
 ; ===== 템플릿 =====
-^!p:: {
-    today := FormatTime(, "yyyy-MM-dd")
-    text := "/*`n"
-           . " * 순번 : `n"
-           . " * 요청일 :  / 요청자 : 허영우 / 업무구분 : 인사`n"
-           . " * 요청내용 : `n"
-           . " * summary : `n"
-           . " * date : " . today . "`n"
-           . " * author : hsg`n"
-           . " */`n"
-    InsertText(text)
-}
-
-^![:: {
-    today := FormatTime(, "yyyy-MM-dd")
-    text := "/*`n"
-           . " * askme : No. : REQ0072629 / SubTask : SCTASK0090907`n"
-           . " * title : [크나우프]`n"
-           . " * summary : `n"
-           . " * date : " . today . "`n"
-           . " * author : hsg`n"
-           . " */`n"
-    InsertText(text)
-}
-
 ^!]:: {
     text := "안녕하세요. 서린정보기술 홍성근입니다.`n`n"
            . "요청하신 아래 내용을 테스트 서버에 반영했습니다.`n`n`n`n"
