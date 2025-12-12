@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>report</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="google-slides-nano-banana-pro-실무-매뉴얼-20251212-기준">Google
+Slides &amp; Nano Banana Pro 실무 매뉴얼 (2025‑12‑12 기준)</h1>
+<h2 id="요약-summary">🧭 요약 (Summary)</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>구분</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>목표</strong></td>
+<td>Google Slides와 <strong>Gemini in Slides</strong>,
+<strong>Nano Banana Pro</strong> 및 자동화
+도구(Apps Script/Slides API)를 활용해 <strong>즉시 업무에 적용할 수 있는
+실무 매뉴얼</strong>을 제공한다.</td>
+</tr>
+<tr class="even">
+<td><strong>범위</strong></td>
+<td>슬라이드 편집 기본기, 자주 쓰는 슬라이드 패턴, Gemini in Slides
+사용법, Nano Banana Pro를 통한 이미지/인포그래픽 생성, Apps Script 및
+Slides API로 자동화, 검증 및 품질 체크.</td>
+</tr>
+<tr class="odd">
+<td><strong>주요 사실</strong></td>
+<td>2025년 11월 Workspace 업데이트에서
+<strong>Nano Banana Pro</strong>가 Slides에 도입되어 “Help
+me visualize”와 <strong>Beautify this slide</strong> 기능으로
+인포그래픽과 슬라이드 미화를 지원한다【591886253299689†L90-L114】.
+<strong>Gemini in Slides</strong>는 이미지·슬라이드 생성, 프레젠테이션
+요약 및 Drive 참조 기능을 제공하며【477443691059783†L20-L29】, 이 기능은
+실험 프로그램 및 일부 유료 플랜에서 이용
+가능하다【477443691059783†L31-L38】. Nano Banana Pro는 Gemini 3 Pro
+기반으로 텍스트가 잘 읽히는 고품질 이미지를 여러 언어로
+생성하며【895433497974522†L283-L301】, 모든 AI 이미지에는
+<strong>SynthID</strong> 워터마크가 삽입되고 무료/Pro 요금제에서는 눈에
+띄는 워터마크가 유지된다【895433497974522†L520-L538】.</td>
+</tr>
+<tr class="even">
+<td><strong>주요 제약</strong></td>
+<td>Slides 녹화 기능은 Workspace Business/Enterprise/Education
+계정에서만 제공되며 Chrome/Edge에서만 사용 가능하고 녹화 당 30분으로
+제한된다【117644713911694†L88-L103】. Nano Banana Pro 사용에는 플랜별
+사용량 한도가 적용되며 18세 이상 사용자에게만
+제공된다【591886253299689†L140-L144】. Slides API의
+<code>batchUpdate</code> 메서드는 여러 업데이트를 한 번에 전송하며,
+하나라도 실패하면 전체 요청이
+롤백된다【222791837349504†L373-L391】.</td>
+</tr>
+<tr class="odd">
+<td><strong>상태 배지</strong></td>
+<td>🟢 확인됨 – 공식 Google 자료에서 확인한 사실. 🟡 추측 – 공식 자료
+부재로 추정. 🔴 확실하지 않음 – 모순되거나 불명확.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="시각적-개요-visual-overview">📊 시각적 개요
+(Visual Overview)</h2>
+<h3 id="워크플로우-개요-flowchart">워크플로우 개요 (Flowchart)</h3>
+<pre class="mermaid"><code>flowchart TD
+  A[요구사항/원고/데이터] --&gt; B{트랙 선택}
+  B --&gt;|초급| C[Slides 기본 편집 + 테마/레이아웃]
+  B --&gt;|중급| D[Gemini in Slides로 슬라이드/이미지/요약 생성]
+  B --&gt;|고급| E[Apps Script/Slides API로 자동 생성·일괄 수정]
+  D --&gt; F[Nano Banana Pro로 이미지/인포그래픽 생성·편집]
+  F --&gt; G[슬라이드에 삽입/정렬/가독성·접근성 점검]
+  E --&gt; G
+  G --&gt; H[발표/공유/내보내기/버전관리]</code></pre>
+<h3 id="자동화-파이프라인-sequence-diagram">자동화 파이프라인 (Sequence
+Diagram)</h3>
+<pre class="mermaid"><code>sequenceDiagram
+  participant U as 사용자
+  participant S as Google Slides
+  participant G as Gemini (Nano Banana Pro)
+  participant AS as Apps Script
+  participant API as Slides API
+  U-&gt;&gt;S: 템플릿/브랜드 테마 선택
+  U-&gt;&gt;G: 이미지/인포그래픽 생성 프롬프트 입력
+  G--&gt;&gt;U: 생성 이미지(+워터마크/정책 안내)
+  U-&gt;&gt;S: 이미지 삽입/레이아웃 적용
+  U-&gt;&gt;AS: 데이터(시트/JSON) 기반 자동 생성 실행
+  AS-&gt;&gt;API: batchUpdate 요청(슬라이드 생성/서식/삽입)
+  API--&gt;&gt;S: 업데이트 반영
+  U-&gt;&gt;S: 최종 검수/발표/내보내기</code></pre>
+<h3 id="기능별-도구-매핑-표">기능별 도구 매핑 표</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>기능</th>
+<th>기본 도구</th>
+<th>AI 도구(Gemini/Nano Banana Pro)</th>
+<th>자동화 도구</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>슬라이드 편집</strong></td>
+<td>Google Slides 편집기(레이아웃, 테마, 마스터
+편집)【433063014431033†L270-L307】</td>
+<td>Gemini in Slides: 추천 레이아웃 및 텍스트
+재작성【477443691059783†L20-L29】</td>
+<td>Apps Script Slides Service로 오브젝트
+생성/변경【675894132430037†L1327-L1333】</td>
+</tr>
+<tr class="even">
+<td><strong>이미지/인포그래픽 삽입</strong></td>
+<td>이미지 업로드, Google Photos, 드라이브</td>
+<td>Nano Banana Pro를 통한 이미지·인포그래픽
+생성【895433497974522†L283-L301】</td>
+<td>Slides API의 <code>CreateImageRequest</code>를 사용해 자동
+삽입【222791837349504†L272-L276】</td>
+</tr>
+<tr class="odd">
+<td><strong>내용 요약/슬라이드 생성</strong></td>
+<td>수동 작성</td>
+<td>Gemini in Slides의 요약·슬라이드
+생성【477443691059783†L147-L160】</td>
+<td>Apps Script로 Docs/Sheets 데이터를 읽어 슬라이드 자동 생성</td>
+</tr>
+<tr class="even">
+<td><strong>발표/녹화</strong></td>
+<td>Presenter View &amp;
+Q&amp;A【284837408948019†L61-L66】【224247128011444†L40-L48】</td>
+<td>Gemini in Slides의 발표자 지원/톤 조정 (현재 베타)🟡</td>
+<td>Slides API를 통해 발표용 슬라이드 일괄 생성, 비공식 녹화 없음</td>
+</tr>
+<tr class="odd">
+<td><strong>공동편집/버전관리</strong></td>
+<td>실시간 협업, 댓글, 버전 기록</td>
+<td>Gemini in Slides로 피드백 반영🟡</td>
+<td>Apps Script로 권한 설정 및 변경 감시</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nano-banana-pro-프롬프트-템플릿-라이브러리">Nano Banana Pro
+프롬프트 템플릿 라이브러리</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>유형</th>
+<th>Goal (목표)</th>
+<th>Inputs (입력)</th>
+<th>Style &amp; Constraints (스타일/제약)</th>
+<th>Output Spec</th>
+<th>Retry Prompts &amp; Common Failures</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>A1: 표지/히어로 비주얼</strong></td>
+<td>브랜드 컬러를 활용하여 제품 출시를 축하하는 표지 디자인</td>
+<td>제품명, 슬로건, 분위기 키워드</td>
+<td>밝은 색상, 16:9, 여백 확보, 텍스트를 중앙에 배치</td>
+<td>고해상도 PNG, SynthID 워터마크 포함</td>
+<td>[Retry] “텍스트가 흐릿해요, 글꼴을 더 읽기 쉽게 바꿔줘.” / [Failure]
+컬러가 브랜드 가이드와 맞지 않음</td>
+</tr>
+<tr class="even">
+<td><strong>A2</strong></td>
+<td>웨비나 초대장을 위한 히어로 이미지</td>
+<td>웨비나 주제, 날짜, 인물 캐릭터 유무</td>
+<td>현대적인 일러스트, 3D 느낌, 회사 로고 포함 금지</td>
+<td>16:9 JPG</td>
+<td>[Retry] “인물 대신 아이콘만 사용해 주세요.” / [Failure] 사람 얼굴이
+실사처럼 표현됨</td>
+</tr>
+<tr class="odd">
+<td><strong>A3</strong></td>
+<td>연차 보고서 표지를 위한 추상적 배경</td>
+<td>키워드(성장, 혁신), 기업 색상</td>
+<td>추상적인 곡선과 그래프 모티프, 고대비</td>
+<td>PDF 삽입용 벡터</td>
+<td>[Retry] “그래프 요소를 더 강조해 주세요.” / [Failure] 색상이 너무
+어두움</td>
+</tr>
+<tr class="even">
+<td><strong>B1: 인포그래픽(데이터)</strong></td>
+<td>매출 성장률을 시각화한 인포그래픽</td>
+<td>표 또는 데이터셋(JSON/Sheet 링크)</td>
+<td>다중 막대그래프, 최소 텍스트, 회사 색상 사용</td>
+<td>16:9 PNG</td>
+<td>[Retry] “데이터 범례를 추가해 주세요.” / [Failure] 값 레이블이 잘못
+배치됨</td>
+</tr>
+<tr class="odd">
+<td><strong>B2</strong></td>
+<td>사용자 여정을 보여주는 플로우 차트</td>
+<td>프로세스 단계 목록</td>
+<td>아이콘과 화살표, 파스텔 톤, 수평 배열</td>
+<td>투명 배경 PNG</td>
+<td>[Retry] “아이콘 간 간격을 넓혀 주세요.” / [Failure] 흐름이 겹쳐
+가독성 떨어짐</td>
+</tr>
+<tr class="even">
+<td><strong>B3</strong></td>
+<td>기술 아키텍처 개요 다이어그램</td>
+<td>시스템 구성 요소 목록</td>
+<td>단순화된 선과 박스, 브랜드 색상 최소 사용</td>
+<td>SVG 또는 PNG</td>
+<td>[Retry] “네트워크 연결선을 파란색으로 변경해 주세요.” / [Failure]
+요소 비율이 불균형</td>
+</tr>
+<tr class="odd">
+<td><strong>C1: 아이콘/일러스트 세트</strong></td>
+<td>회의/협업/데이터를 나타내는 아이콘 세트</td>
+<td>각 아이콘 키워드 3개</td>
+<td>통일된 스타일(라인/플랫/다채색), 32px/64px 버전</td>
+<td>SVG 스프라이트</td>
+<td>[Retry] “아이콘 테두리를 얇게 조정해 주세요.” / [Failure] 아이콘
+크기가 균일하지 않음</td>
+</tr>
+<tr class="even">
+<td><strong>C2</strong></td>
+<td>스타트업 피치덱용 일러스트 시리즈</td>
+<td>비즈니스 모델, 팀 구성, 시장 크기</td>
+<td>일관된 캐릭터 스타일, 밝은 색상, 단순 배경</td>
+<td>16:9 시리즈 PNG</td>
+<td>[Retry] “캐릭터 표정을 더 생동감 있게 해 주세요.” / [Failure] 캐릭터
+사이즈가 일정하지 않음</td>
+</tr>
+<tr class="odd">
+<td><strong>C3</strong></td>
+<td>교육용 아이콘 세트(수학·과학·예술)</td>
+<td>과목 목록</td>
+<td>두꺼운 라인과 파스텔 색조, 투명 배경</td>
+<td>SVG</td>
+<td>[Retry] “배경을 완전히 투명하게 해 주세요.” / [Failure] 아이콘
+내부에 불필요한 그림자 존재</td>
+</tr>
+<tr class="even">
+<td><strong>D1: 기존 이미지 편집</strong></td>
+<td>제품 사진의 배경을 브랜드 색상으로 교체</td>
+<td>기존 이미지 파일, 원하는 색상</td>
+<td>포토리얼리즘 유지, 인물/제품 왜곡 금지</td>
+<td>1:1 비율 JPG</td>
+<td>[Retry] “제품 외곽선이 깨끗하지 않아요. 다시 처리해 주세요.” /
+[Failure] 배경이 완전히 제거되지 않음</td>
+</tr>
+<tr class="odd">
+<td><strong>D2</strong></td>
+<td>슬라이드에 삽입된 스크린샷의 불필요한 텍스트 제거</td>
+<td>스크린샷, 삭제할 텍스트 표시</td>
+<td>유지해야 할 요소에 마스킹 적용, 추가 손상 방지</td>
+<td>원본 크기 PNG</td>
+<td>[Retry] “삭제된 부분을 원래 배경과 자연스럽게 맞춰주세요.” /
+[Failure] 삭제 영역이 흐릿하게 표현</td>
+</tr>
+<tr class="even">
+<td><strong>D3</strong></td>
+<td>포스터 이미지의 카피 문구 교체</td>
+<td>원본 이미지, 새 문구, 브랜드 폰트 지침</td>
+<td>동일한 위치와 크기로 텍스트 교체, 색상 대비 유지</td>
+<td>4K JPG</td>
+<td>[Retry] “텍스트가 이미지 배경과 섞여 잘 보이지 않습니다.” /
+[Failure] 폰트가 브랜드 가이드와 상이함</td>
+</tr>
+</tbody>
+</table>
+<p>위 템플릿들은 Nano Banana Pro의 높은 텍스트 렌더링 능력과 다국어
+지원을 활용하며【895433497974522†L363-L373】, 불필요한 요소를 최소화하고
+슬라이드 레이아웃과 일관성을 유지하도록 설계되어 있다. 참고로
+AI 이미지는 SynthID 워터마크가 삽입되며 무료 및 Pro 등급에서는 눈에 띄는
+워터마크가 남아 있다【895433497974522†L520-L538】.</p>
+<h2 id="메인-매뉴얼-main-manual">🔧 메인 매뉴얼 (Main Manual)</h2>
+<p>다음 절차는 <strong>메뉴 경로 → 언제/왜 사용하는지 → 단계별 실행법 →
+주의사항 → 대체 경로</strong>의 구조로 제시된다. 각 섹션 말미에는 바로
+실행 가능한 <strong>✅ Steps</strong> 박스를 포함하여 빠르게 따라할 수
+있도록 했다.</p>
+<h3 id="google-slides-핵심-조작-기본기">1. Google Slides 핵심 조작
+(기본기)</h3>
+<h4 id="테마레이아웃테마-빌더">1.1 테마·레이아웃·테마 빌더</h4>
+<ul>
+<li><strong>개념</strong>: <strong>테마(Theme)</strong>는 전체
+프레젠테이션의 색상·폰트·배경 스타일을 정의하고,
+<strong>레이아웃(Layout)</strong>은 각 슬라이드에 배치될
+요소(제목/본문/이미지)의 틀이다. <strong>Theme Builder(옛
+Master Slide)</strong>를 이용하면 전체 덱의 디자인을 일괄 수정할 수
+있다. Computerworld 기사에 따르면 테마 빌더를 열려면 상단 메뉴에서
+<strong>“View &gt; Theme builder”</strong>를
+선택한다【433063014431033†L270-L307】.</li>
+<li><strong>언제 사용?</strong> 회사 브랜드 가이드에 맞춘 슬라이드를
+만들거나 여러 슬라이드의 디자인을 일괄 변경할 때.</li>
+<li><strong>어떻게?</strong>
+<ol type="1">
+<li>Google Slides에서 프레젠테이션을 열고
+<strong>View &gt; Theme builder</strong>
+선택【433063014431033†L270-L307】.</li>
+<li>왼쪽 ‘LAYOUTS’ 목록에서 수정할 레이아웃을
+클릭한다【433063014431033†L270-L307】.</li>
+<li>불필요한 텍스트나 요소를 선택하여 Delete로 제거하고, 상단 서식
+도구를 이용해 도형·이미지·텍스트 상자를
+추가한다【433063014431033†L276-L287】.</li>
+<li>객체를 드래그하여 위치와 크기를 조정하고 색상·배경을
+수정한다【433063014431033†L286-L294】.</li>
+<li>레이아웃 이름을 클릭해 고유한 이름으로 변경한 후 X 버튼으로
+Theme Builder를 종료한다【433063014431033†L296-L307】.</li>
+</ol></li>
+<li><strong>주의사항</strong>: 변경한 레이아웃은 현재 프레젠테이션에만
+적용된다. 다른 파일에 적용하려면 새 테마로 다운로드하거나 템플릿으로
+저장하여 가져와야 한다. 공동편집자가 있는 경우 변경사항이 즉시
+반영된다.</li>
+<li><strong>대체 경로</strong>: 레이아웃 대신 슬라이드 삽입 시
+<strong>Layout</strong> 메뉴에서 원하는 레이아웃을 직접 선택하거나,
+<strong>템플릿 갤러리</strong>에서 미리 디자인된 레이아웃을 사용할 수
+있다【529246492776942†L105-L107】.</li>
+</ul>
+<p>✅ <strong>Steps</strong> 1. 메뉴 :
+<code>View &gt; Theme builder</code> 선택 2. 왼쪽 레이아웃 목록에서
+수정할 항목 클릭 3. 요소 삭제·추가·재배치 4. 새 이름 지정 후 닫기 5. 새
+레이아웃을 슬라이드에 적용 (<code>Layout</code> 메뉴)</p>
+<h4 id="텍스트도형이미지와-정렬">1.2 텍스트·도형·이미지와 정렬</h4>
+<ul>
+<li><strong>개념</strong>: 텍스트 상자, 도형, 이미지 등을 삽입하여
+정보를 시각화한다. 정렬과 간격 조절을 통해 일관된 디자인을
+유지한다.</li>
+<li><strong>실무 팁</strong>:
+<ul>
+<li><strong>삽입</strong> : 상단 <strong>Insert</strong> 메뉴에서
+Text box/Shape/Image 선택. 이미지는 드라이브 업로드 또는 URL 붙여넣기
+가능.</li>
+<li><strong>그리드 &amp; 가이드</strong> :
+<code>View &gt; Snap to</code> 옵션에서 <strong>Guides</strong>와
+<strong>Grid</strong>를 활성화하여 요소를 균등하게 배치.</li>
+<li><strong>정렬</strong> : 여러 객체를 선택 후 <strong>Arrange &gt;
+Align</strong>에서 중앙, 좌측, 상단 등 선택.</li>
+<li><strong>서식 복사</strong> : 원하는 스타일을 적용한 객체를 선택하고
+<strong>Paint format</strong> 도구를 클릭한 뒤 다른 객체를 클릭하면 같은
+스타일을 적용.</li>
+<li><strong>도형 결합</strong> : 여러 도형을 선택한 후 <strong>Arrange
+&gt; Merge shapes</strong>를 사용하여 복잡한 도형을 만들 수 있다.</li>
+</ul></li>
+<li><strong>주의사항</strong>: 이미지 파일은 가능한 16:9 비율로 준비하고
+용량을 최적화한다. Nano Banana Pro로 생성한 이미지에는 워터마크가 포함될
+수 있으므로 필요한 경우 화면을 자르거나 AI Ultra 플랜을 사용해
+제거한다【895433497974522†L520-L538】.</li>
+<li><strong>대체 경로</strong>: Microsoft PowerPoint에서 작업 후
+Google Slides로 업로드하면 텍스트와 도형이 거의 유지되나, 일부 고급
+애니메이션과 폰트는 호환되지 않는다.</li>
+</ul>
+<p>✅ <strong>Steps</strong> 1.
+<code>Insert &gt; Text box/Shape/Image</code>로 요소 삽입 2.
+<code>View &gt; Guides/Grid</code>로 배치 기준선 활성화 3. 여러 객체
+선택 후 <code>Arrange &gt; Align</code>으로 정렬 4. 페인트 브러시(서식
+복사)로 스타일 복사 5. 필요 시 <code>Arrange &gt; Merge shapes</code>
+활용</p>
+<h4 id="차트표다이어그램-구성">1.3 차트·표·다이어그램 구성</h4>
+<ul>
+<li><strong>개념</strong>: 데이터 시각화를 위해 차트와 표를 삽입하며,
+다이어그램은 플로우·프로세스를 설명한다.</li>
+<li><strong>실무 팁</strong>:
+<ul>
+<li><strong>차트 삽입</strong>: <code>Insert &gt; Chart</code>에서
+Column/Bar/Line/Pie 선택. Google Sheets와 연결된 차트는 데이터 수정 시
+자동 업데이트된다.</li>
+<li><strong>표 삽입</strong>: <code>Insert &gt; Table</code>에서 행과 열
+수를 지정해 표를 추가한다. 셀 병합, 행·열 추가/삭제, 셀 스타일 변경이
+가능하다.</li>
+<li><strong>다이어그램</strong>: <code>Insert &gt; Diagram</code>에서
+타임라인, 프로세스, 순환 구조 등 기본 템플릿을 선택한 후 색상과 단계
+수를 수정한다.</li>
+<li><strong>가독성</strong>: 색상 대비를 확보하고 텍스트 크기를 최소
+18pt 이상 사용한다. 숫자는 소수점 두 자리 이내로 제한하고 범례를 명확히
+표시한다.</li>
+<li><strong>Nano Banana Pro 활용</strong>: 복잡한 데이터는
+Nano Banana Pro의 인포그래픽 생성 템플릿(B1–B3)을 사용하여 더 직관적인
+시각화를 얻을 수 있다.</li>
+</ul></li>
+<li><strong>주의사항</strong>: Slides 내부 차트는 가벼운 데이터에
+적합하며, 복잡한 분석 그래프는 Google Sheets에서 만든 후 차트로 삽입하는
+것이 좋다.</li>
+<li><strong>대체 경로</strong>: 외부 도구(예: Looker Studio)에서 생성한
+보고서를 이미지로 내보내고 Slides에 삽입한다.</li>
+</ul>
+<p>✅ <strong>Steps</strong> 1.
+<code>Insert &gt; Chart/Table/Diagram</code> 선택 2. 차트 종류 또는 표
+행·열 수 지정 3. 데이터 연결 시 Sheets 링크 확인 4. 색상·글꼴 등 서식
+수정 5. 필요 시 Nano Banana Pro 템플릿 활용</p>
+<h4 id="발표-모드-qa-스피커-노트-및-녹화">1.4 발표 모드, Q&amp;A, 스피커
+노트 및 녹화</h4>
+<ul>
+<li><strong>발표 &amp; 스피커 노트</strong>: 슬라이드를 전체 화면으로
+보여주면서 발표자는 별도의 Presenter View 창에서 노트와 타이머를 볼 수
+있다. <code>Slideshow</code> 옆의 드롭다운에서
+<strong>Presenter view</strong>를 선택한 뒤
+<strong>Speaker notes</strong>를 클릭하면 노트가
+표시된다【284837408948019†L61-L66】. 타이머와 슬라이드 목록, Q&amp;A
+관리 기능이 함께 제공된다【771884280559634†L42-L52】.</li>
+<li><strong>Q&amp;A 세션</strong>: <code>Presenter view</code> 창의
+Audience tools에서 <strong>Start new</strong> 버튼을 눌러 Q&amp;A를
+시작한다【224247128011444†L40-L48】. 생성된 링크를 청중에게 공유하면
+익명 질문 제출과 투표가 가능하며, 발표자는 질문을 선택해 화면에 표시할
+수 있다【224247128011444†L56-L64】【224247128011444†L75-L88】.</li>
+<li><strong>슬라이드 녹화</strong>: 2025년 Slides는 녹화 기능을
+제공한다. 업무·교육용 계정에서만 사용 가능하며 Chrome/Edge 브라우저에서
+최대 30분까지 녹화할 수 있고 Google Drive 저장 공간이
+필요하다【117644713911694†L88-L103】. 프레젠테이션을 열고 오른쪽 상단
+<strong>Record</strong> 버튼을 클릭한 후 <strong>Record a new
+video</strong>를 선택한다. 카메라·마이크 사용을 허용한 뒤 빨간
+<strong>Record</strong> 버튼을 누르고 발표를 진행하며, 끝나면 Stop을
+클릭하고 <strong>Save to Drive</strong>를
+선택한다【117644713911694†L111-L133】.</li>
+<li><strong>주요 팁</strong>: 발표 전 슬라이드를 리허설하여 노트와
+타이밍을 조정하고, Q&amp;A 링크를 미리 준비한다. 녹화 시 조용한 환경과
+충분한 조명 확보가 필요하다.</li>
+<li><strong>대체 경로</strong>: 발표 녹화가 불가능한 경우 Google Meet의
+녹화 기능을 사용해 프레젠테이션을 공유하고 녹화할 수 있다. Q&amp;A 기능
+대신 Google Forms로 질문을 수집할 수도 있다.</li>
+</ul>
+<p>✅ <strong>Steps</strong> 1. <code>Slideshow</code> 옆 화살표 →
+<code>Presenter view</code> 선택 2. <strong>Speaker notes</strong>
+버튼으로 노트 확인 3. Q&amp;A : Audience tools에서
+<code>Start new</code> 클릭 4. 녹화 : 상단 <code>Record</code> 클릭 →
+<code>Record a new video</code> → 녹화 후 Save to Drive 5. 발표 종료 후
+Q&amp;A 결과 및 녹화 파일 검토</p>
+<h4 id="공유권한-및-내보내기">1.5 공유·권한 및 내보내기</h4>
+<ul>
+<li><strong>공유</strong>: 우측 상단 <strong>Share</strong> 버튼을
+클릭해 사람 또는 그룹을 초대하고 편집/댓글/보기 권한을 설정한다.
+Google Chat의 공간(Spaces)에서 공유하면 팀원들이 채팅 안에서 슬라이드를
+열어 댓글을 달 수 있으며, 권한을 Commenter/Viewer/Editor로 변경할 수
+있다【433063014431033†L309-L334】.</li>
+<li><strong>내보내기</strong>: <code>File &gt; Download</code>에서 PDF,
+PPTX, 이미지(JPEG/PNG), 텍스트 파일 등 다양한 형식으로 저장할 수 있다.
+PDF로 내보낼 경우 내장 폰트가 일부 변경될 수 있으므로 테마에 포함된
+Google Fonts를 사용하는 것이 좋다. PPTX로 내보내면 PowerPoint와
+호환되지만 애니메이션·동영상이 일부 손실될 수 있다.</li>
+<li><strong>버전 관리</strong>:
+<code>File &gt; Version history &gt; See version history</code>에서 이전
+버전을 확인하고 복원할 수 있다. 중요한 변경 전에는 버전 이름을 지정해
+두는 것이 좋다.</li>
+<li><strong>대체 경로</strong>: Office 파일과의 호환을 위해
+<code>File &gt; Open</code>에서 PowerPoint 파일을 직접 업로드하여
+Google Slides로 변환할 수 있고, 완료 후
+<code>File &gt; Download &gt; Microsoft PowerPoint</code>로 다시 변환할
+수 있다.</li>
+</ul>
+<p>✅ <strong>Steps</strong> 1. <code>Share</code> 버튼 클릭 →
+이메일·권한 설정 2. <code>File &gt; Download</code>에서 원하는 형식 선택
+3. <code>File &gt; Version history</code>로 버전 기록 확인 4. 타
+서비스(Outlook, Teams)와 공유 시 링크 생성 5. Office 파일 변환 및 재변환
+시 호환성 확인</p>
+<h3 id="자주-쓰는-슬라이드-제작-패턴">2. 자주 쓰는 슬라이드 제작
+패턴</h3>
+<p>실무에서 반복되는 문서 유형별로 추천 레이아웃과 체크리스트를
+요약했다. 모든 패턴은 기본 테마 + Nano Banana Pro 템플릿을 조합하면
+효율적으로 만들 수 있다.</p>
+<ol type="1">
+<li><strong>제안서/세일즈 덱</strong>: 표지(프로젝트명·로고), 문제 진술,
+솔루션/제품 소개, 경쟁 분석, 로드맵, 요약. 체크리스트: 목표 수익/ROI,
+고객 니즈 강조, 사례 연구.</li>
+<li><strong>제품 소개</strong>: 히어로 비주얼(B타입 B1 템플릿), 제품
+특징, 데모 또는 스크린샷, 가격/플랜 비교, FAQ. 체크리스트:
+USP(Unique Selling Point) 명확히, 경쟁 제품과 비교.</li>
+<li><strong>기술 아키텍처</strong>: 시스템 구성도(C3 템플릿), 데이터
+흐름, 핵심 기술 스택, 확장 계획. 체크리스트: 컴포넌트 이름 일관성, 색상
+대비.</li>
+<li><strong>리서치 요약</strong>: 표지(A3), 연구 배경·목적, 방법론,
+결과(그래프/표), 해석, 향후 연구. 체크리스트: 데이터 출처 명시, 그래프
+단위 표기, 결론과 제한점 구분.</li>
+<li><strong>회의 보고/Action Item</strong>: 회의 목적, 참여자, 논의 내용
+요약, 의사 결정 사항, 다음 단계. 체크리스트: 담당자·마감일 명시,
+불확실한 항목 하이라이트.</li>
+</ol>
+<p>각 패턴에서 반복되는 텍스트·이미지는
+<strong>Gemini in Slides</strong>의 <strong>Drive 참조(<span
+class="citation" data-cites="문서">@문서</span>)</strong> 기능을 활용해
+관련 문서를 불러오거나 요약할 수 있다【477443691059783†L20-L29】. 예를
+들어 “<span class="citation" data-cites="2025">@2025</span> 매출 보고서
+요약해 슬라이드를 만들어줘”와 같이 입력하면 관련 자료를 불러와 새
+슬라이드를 생성한다【477443691059783†L129-L134】.</p>
+<h3 id="gemini-in-slides-활용">3. Gemini in Slides 활용</h3>
+<h4 id="기능과-시작-방법">3.1 기능과 시작 방법</h4>
+<p>Gemini in Slides는 AI 이미지 생성, 슬라이드 생성, 텍스트 요약/재작성,
+Drive 파일 참조 기능을 제공한다【477443691059783†L20-L29】. 기능을
+사용하려면 슬라이드를 열고 상단 우측에 있는 <strong>Ask Gemini</strong>
+버튼(스파크 아이콘)을 클릭한다【477443691059783†L45-L48】. 사이드 패널이
+열리면 다음을 수행할 수 있다:</p>
+<ul>
+<li><strong>이미지 생성</strong> – “Generate an image” 또는 “Suggest
+images for this slide”라고 입력하면 선택된 슬라이드 내용을 분석해 이미지
+후보를 보여준다【477443691059783†L100-L114】. 원하는 이미지를 선택해
+Insert를 클릭하면 워터마크가 포함된 상태로 삽입된다. AI 모델로는 2025년
+11월부터 <strong>Nano Banana Pro</strong>가 기본으로 사용되며,
+인포그래픽과 “Beautify this slide” 기능을
+지원한다【591886253299689†L90-L114】.</li>
+<li><strong>슬라이드 생성</strong> – “Create a slide about <span
+class="citation" data-cites="파일명">@파일명</span>”과 같이 입력하면
+현재 테마에 맞는 새 슬라이드를 생성한다【477443691059783†L121-L143】.
+“Retry”를 클릭하면 다른 버전을 받을 수 있다.</li>
+<li><strong>요약 및 텍스트 생성</strong> – 현재 프레젠테이션을
+요약하거나 새로운 내용을 작성하도록 지시할 수 있다. 예: “Summarize this
+presentation in 3 sentences”【477443691059783†L147-L160】.</li>
+<li><strong>Drive/Gmail 참조</strong> – <span class="citation"
+data-cites="파일명">@파일명</span> 또는 <span class="citation"
+data-cites="이메일을">@이메일을</span> 입력해 Drive 문서나 이메일 내용을
+참고자료로 삼아 슬라이드를 생성한다【477443691059783†L28-L29】.</li>
+<li><strong>변형/추가 기능</strong> – 사이드 패널에서
+<strong>Expand</strong> 버튼을 눌러 창을 키우거나
+<strong>Clear history</strong>로 이전 대화를 삭제할 수
+있다【477443691059783†L70-L80】.</li>
+</ul>
+<h4 id="좋은-입력-규칙">3.2 좋은 입력 규칙</h4>
+<ol type="1">
+<li><strong>명확한 목표 제시</strong> – “3분 내 투자 제안서 요약”처럼
+결과물의 형태와 길이를 구체적으로 명시한다.</li>
+<li><strong>컨텍스트 제공</strong> – 관련 문서(<span class="citation"
+data-cites="파일">@파일</span>)와 키워드를 함께 제공하여 모델이 참고할
+정보를 늘린다.</li>
+<li><strong>톤/스타일 지시</strong> – “친근하지만 전문적인 톤으로
+작성”처럼 어조와 형식을 지정한다.</li>
+<li><strong>반복 활용</strong> – 결과가 기대와 다르면
+<strong>Retry</strong>나 <strong>Edit prompt</strong>를 사용해
+수정한다【477443691059783†L139-L145】.</li>
+<li><strong>출력 검토</strong> – AI 가 생성한 이미지와 텍스트는 반드시
+사실 및 브랜드 가이드 준수 여부를 검토하고 필요한 수정 후 삽입한다.</li>
+</ol>
+<h4 id="실패-패턴-및-수정법">3.3 실패 패턴 및 수정법</h4>
+<ul>
+<li><strong>톤 불일치</strong>: 모델이 지나치게 캐주얼하거나 공식적인
+문체를 출력할 경우 prompt에 “~한 어조로 작성해줘”라고 명확히 지시하거나,
+생성된 텍스트를 수동으로 수정한다.</li>
+<li><strong>정보 누락</strong>: Drive 문서 링크나 데이터를 함께 제공하지
+않으면 요약이 피상적일 수 있다. 가능한 자료를 <span class="citation"
+data-cites="로">@로</span> 참조하고 중요 요소를 나열한다.</li>
+<li><strong>레이아웃 깨짐</strong>: AI가 생성한 슬라이드가 현재 테마와
+조화를 이루지 못할 수 있다. 삽입 후 Theme builder를 통해 서식을
+수정하거나, 필요한 경우 “Beautify this slide” 기능을 사용해 다시
+생성한다【591886253299689†L90-L114】.</li>
+<li><strong>워터마크 문제</strong>: 무료 및 Pro 플랜에서는 이미지에
+워터마크가 남으므로 공식 발표에서는 적합하지 않을 수 있다. Ultra 플랜을
+사용하거나 이미지 편집으로 워터마크 부분을
+자른다【895433497974522†L520-L538】.</li>
+</ul>
+<h3 id="nano-banana-pro-통합-작업">4. Nano Banana Pro 통합 작업</h3>
+<h4 id="정의와-정책">4.1 정의와 정책</h4>
+<p>Nano Banana Pro는 <strong>Gemini 3 Pro</strong>를 기반으로 한 이미지
+생성·편집 모델로서, 텍스트가 명확히 읽히는 고해상도 이미지를 다양한
+언어로 생성한다【895433497974522†L283-L301】. 이전
+세대(Nano Banana 2.5 Flash)에 비해 현실 세계 지식과 검색 기반 정보
+활용이 향상되어 정확한 인포그래픽과 다이어그램을 만들어
+준다【895433497974522†L338-L347】. 최대 14개의 이미지를 혼합하고 최대
+5명의 인물 얼굴 일관성을 유지할 수 있으며【895433497974522†L419-L425】,
+4K 해상도까지 지원한다【895433497974522†L296-L300】. 모든 이미지에는
+<strong>SynthID</strong>라는 디지털 워터마크가 삽입되고,
+무료·Pro 요금제에는 시각적 워터마크가
+포함된다【895433497974522†L520-L538】. 워터마크를 제거하려면
+Google AI Ultra 또는 Google AI Studio에서 생성해야 한다.</p>
+<h4 id="슬라이드용-이미지-요구사항">4.2 슬라이드용 이미지 요구사항</h4>
+<ul>
+<li><strong>비율</strong>: Google Slides는 기본 16:9 화면을 사용하므로
+Nano Banana Pro 프롬프트에 <code>16:9 aspect ratio</code>를
+명시한다.</li>
+<li><strong>텍스트</strong>: 텍스트 렌더링이 정확하며,
+한글/중국어/일본어 등 다양한 언어로 설명을 삽입할 수
+있다【895433497974522†L363-L373】. 제목과 본문은 분리하여 짧게
+작성한다.</li>
+<li><strong>여백과 대비</strong>: 슬라이드 가장자리와 이미지 내용 간
+충분한 여백을 두고, 배경과 텍스트 색상 대비를 확보한다.</li>
+<li><strong>브랜드 컬러</strong>: 프롬프트에 Hex 값이나 브랜드 색상을
+명시해 일관성을 유지한다. 로고 삽입이 필요하면 AI 모델 대신 수동으로
+추가한다.</li>
+<li><strong>파일 형식</strong>: PNG 또는 JPG가 일반적이며, 인포그래픽은
+SVG로 출력하면 크기 조정 시 품질을 유지할 수 있다.</li>
+</ul>
+<h4 id="워크플로우-및-주의사항">4.3 워크플로우 및 주의사항</h4>
+<ol type="1">
+<li><strong>프롬프트 작성</strong> – 위 표의 템플릿을 참고하여 Goal,
+Inputs, Style, Constraints, Output Spec 등을 명확히 작성한다.</li>
+<li><strong>Gemini in Slides 사용</strong> – Ask Gemini 패널에서
+프롬프트를 입력하고 이미지를 생성한 후 <strong>Insert</strong>를
+클릭한다. 단, 60일 무료 사용 한도 이후에는 계정 당 사용량 제한이 적용될
+수 있다【591886253299689†L140-L144】.</li>
+<li><strong>품질 확인</strong> – 삽입된 이미지의 텍스트가 선명하고
+브랜드 컬러에 맞는지 확인한다. 필요하면 Nano Banana Pro의 편집
+기능(D 타입 프롬프트)을 사용해 수정한다.</li>
+<li><strong>워터마크 처리</strong> – 프리 플랜에서는 워터마크가 남으므로
+주제에 따라 잘 보이지 않는 위치로 배치하거나, AI Ultra를 구독하여
+제거한다【895433497974522†L520-L538】.</li>
+<li><strong>저작권</strong> – Nano Banana Pro 생성물은 상업적 사용이
+가능하지만, 내부 가이드에 따라 저작권 표시나 AI 사용 사실을 명시해야 할
+수 있다.</li>
+</ol>
+<h3 id="slides-자동화-apps-script-slides-api">5. Slides 자동화 –
+Apps Script &amp; Slides API</h3>
+<h4 id="apps-script-기본-slides-service">5.1 Apps Script 기본
+(Slides Service)</h4>
+<p><strong>Slides Service</strong>는 Apps Script 내장 서비스로서
+프레젠테이션을 생성·수정할 수 있으며, 객체를 추가하고 텍스트를 변경하는
+등 기본적인 작업을 지원한다【675894132430037†L1327-L1333】. 주요
+메서드는 <code>SlidesApp.openById()</code>,
+<code>Presentation.getSlides()</code>, <code>Slide.insertShape()</code>
+등이다. 아래는 예시 코드이다.</p>
+<h5
+id="예제-1-프레젠테이션-생성-및-슬라이드-추가-apps-script">예제 1 – 프레젠테이션
+생성 및 슬라이드 추가 (Apps Script)</h5>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">createDeck</span>() {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 프레젠테이션 생성</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pres <span class="op">=</span> SlidesApp<span class="op">.</span><span class="fu">create</span>(<span class="st">&#39;자동 생성 예제&#39;</span>)<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> slide <span class="op">=</span> pres<span class="op">.</span><span class="fu">getSlides</span>()[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 첫 슬라이드에 제목과 부제목 삽입</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  slide<span class="op">.</span><span class="fu">insertTextBox</span>(<span class="st">&#39;보고서 제목&#39;</span><span class="op">,</span> <span class="dv">50</span><span class="op">,</span> <span class="dv">50</span><span class="op">,</span> <span class="dv">400</span><span class="op">,</span> <span class="dv">50</span>)<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  slide<span class="op">.</span><span class="fu">insertTextBox</span>(<span class="st">&#39;작성일: 2025-12-12&#39;</span><span class="op">,</span> <span class="dv">50</span><span class="op">,</span> <span class="dv">120</span><span class="op">,</span> <span class="dv">400</span><span class="op">,</span> <span class="dv">30</span>)<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 새로운 슬라이드 추가 (타이틀 + 두 칼럼 레이아웃)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> newSlide <span class="op">=</span> pres<span class="op">.</span><span class="fu">appendSlide</span>(SlidesApp<span class="op">.</span><span class="at">PredefinedLayout</span><span class="op">.</span><span class="at">TITLE_AND_TWO_COLUMNS</span>)<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  newSlide<span class="op">.</span><span class="fu">getPlaceholder</span>(SlidesApp<span class="op">.</span><span class="at">PlaceholderType</span><span class="op">.</span><span class="at">TITLE</span>)<span class="op">.</span><span class="fu">asShape</span>()<span class="op">.</span><span class="fu">getText</span>()<span class="op">.</span><span class="fu">setText</span>(<span class="st">&#39;데이터 요약&#39;</span>)<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  newSlide<span class="op">.</span><span class="fu">getPlaceholder</span>(SlidesApp<span class="op">.</span><span class="at">PlaceholderType</span><span class="op">.</span><span class="at">BODY</span>)<span class="op">.</span><span class="fu">asShape</span>()<span class="op">.</span><span class="fu">getText</span>()<span class="op">.</span><span class="fu">setText</span>(<span class="st">&#39;여기에 요약 내용을 입력하세요.&#39;</span>)<span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>위 스크립트는 간단한 프레젠테이션을 생성한 후 첫 슬라이드에 텍스트
+박스를 삽입하고, 두 번째 슬라이드를 추가한다. <strong>주의</strong>:
+스크립트 실행 시 권한 요청이 나타나며, Slides에 수정 권한이 있어야
+한다.</p>
+<h5
+id="예제-2-스프레드시트-데이터를-슬라이드로-변환-apps-script">예제 2 – 스프레드시트
+데이터를 슬라이드로 변환 (Apps Script)</h5>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sheetToSlides</span>() {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ss <span class="op">=</span> SpreadsheetApp<span class="op">.</span><span class="fu">openById</span>(<span class="st">&#39;시트ID&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sheet <span class="op">=</span> ss<span class="op">.</span><span class="fu">getSheetByName</span>(<span class="st">&#39;데이터&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> sheet<span class="op">.</span><span class="fu">getDataRange</span>()<span class="op">.</span><span class="fu">getValues</span>()<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pres <span class="op">=</span> SlidesApp<span class="op">.</span><span class="fu">create</span>(<span class="st">&#39;자동화 리포트&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  data<span class="op">.</span><span class="fu">forEach</span>((row<span class="op">,</span> idx) <span class="kw">=&gt;</span> {</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (idx <span class="op">===</span> <span class="dv">0</span>) <span class="cf">return</span><span class="op">;</span> <span class="co">// 헤더 건너뜀</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> slide <span class="op">=</span> pres<span class="op">.</span><span class="fu">appendSlide</span>(SlidesApp<span class="op">.</span><span class="at">PredefinedLayout</span><span class="op">.</span><span class="at">TITLE_AND_BODY</span>)<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    slide<span class="op">.</span><span class="fu">getPlaceholder</span>(SlidesApp<span class="op">.</span><span class="at">PlaceholderType</span><span class="op">.</span><span class="at">TITLE</span>)<span class="op">.</span><span class="fu">asShape</span>()<span class="op">.</span><span class="fu">getText</span>()<span class="op">.</span><span class="fu">setText</span>(row[<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    slide<span class="op">.</span><span class="fu">getPlaceholder</span>(SlidesApp<span class="op">.</span><span class="at">PlaceholderType</span><span class="op">.</span><span class="at">BODY</span>)<span class="op">.</span><span class="fu">asShape</span>()<span class="op">.</span><span class="fu">getText</span>()<span class="op">.</span><span class="fu">setText</span>(row<span class="op">.</span><span class="fu">slice</span>(<span class="dv">1</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>해당 함수는 Google Sheets에서 데이터를 읽어 각 행을 개별 슬라이드로
+생성한다. 데이터 구조가 복잡한 경우 템플릿 슬라이드를 복제하여
+배치한다.</p>
+<h4 id="slides-api와-batchupdate">5.2 Slides API와 batchUpdate</h4>
+<p>Slides API의 <code>presentations.batchUpdate</code> 메서드는 여러
+업데이트 요청을 한 번에 전송하며, 요청 중 하나라도 실패하면 전체가
+적용되지 않는다【222791837349504†L373-L391】. 이는 협업 환경에서
+원자성을 보장한다. API 호출은 서비스 계정 또는 OAuth 2.0을 통해 인증해야
+하며, 프로젝트에 Slides API를 활성화해야 한다.</p>
+<h5
+id="예제-3-node.js에서-슬라이드-일괄-생성-typescript">예제 3 – Node.js에서
+슬라이드 일괄 생성 (TypeScript)</h5>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {google} <span class="im">from</span> <span class="st">&#39;googleapis&#39;</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {v4 <span class="im">as</span> uuidv4} <span class="im">from</span> <span class="st">&#39;uuid&#39;</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">generateSlides</span>() {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> auth <span class="op">=</span> <span class="kw">new</span> google<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="fu">GoogleAuth</span>({</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    scopes<span class="op">:</span> [<span class="st">&#39;https://www.googleapis.com/auth/presentations&#39;</span><span class="op">,</span> <span class="st">&#39;https://www.googleapis.com/auth/drive&#39;</span>]<span class="op">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> slides <span class="op">=</span> google<span class="op">.</span><span class="fu">slides</span>({version<span class="op">:</span> <span class="st">&#39;v1&#39;</span><span class="op">,</span> auth})<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> presentation <span class="op">=</span> <span class="cf">await</span> slides<span class="op">.</span><span class="at">presentations</span><span class="op">.</span><span class="fu">create</span>({requestBody<span class="op">:</span> {title<span class="op">:</span> <span class="st">&#39;API 생성 예제&#39;</span>}})<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> presId <span class="op">=</span> presentation<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">presentationId</span> <span class="im">as</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> slideId <span class="op">=</span> <span class="fu">uuidv4</span>()<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> requests <span class="op">=</span> [</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      createSlide<span class="op">:</span> {</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        objectId<span class="op">:</span> slideId<span class="op">,</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        insertionIndex<span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        slideLayoutReference<span class="op">:</span> {predefinedLayout<span class="op">:</span> <span class="st">&#39;TITLE_AND_TWO_COLUMNS&#39;</span>}<span class="op">,</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      insertText<span class="op">:</span> {</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        objectId<span class="op">:</span> slideId<span class="op">,</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        text<span class="op">:</span> <span class="st">&#39;API로 생성된 슬라이드&#39;</span><span class="op">,</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        insertionIndex<span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">await</span> slides<span class="op">.</span><span class="at">presentations</span><span class="op">.</span><span class="fu">batchUpdate</span>({presentationId<span class="op">:</span> presId<span class="op">,</span> requestBody<span class="op">:</span> {requests}})<span class="op">;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`Created presentation: </span><span class="sc">${</span>presId<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="fu">generateSlides</span>()<span class="op">.</span><span class="fu">catch</span>(<span class="bu">console</span><span class="op">.</span><span class="fu">error</span>)<span class="op">;</span></span></code></pre></div>
+<p>이 코드는 Google Slides API를 사용해 새 프레젠테이션을 만들고 두 개의
+요청을 포함하는 <code>batchUpdate</code>를 실행한다. 첫 요청은
+슬라이드를 생성하고, 두 번째 요청은 텍스트를 삽입한다. 요청 배열을 한
+번에 보내야 원자성을 확보할 수 있으며, 동일한 <code>objectId</code>를
+중복 사용하지 않도록 주의한다.</p>
+<h5 id="예제-4-에러-처리-및-재시도-패턴">예제 4 – 에러 처리 및 재시도
+패턴</h5>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">safeBatchUpdate</span>(slides<span class="op">,</span> presId<span class="op">,</span> requests) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> slides<span class="op">.</span><span class="at">presentations</span><span class="op">.</span><span class="fu">batchUpdate</span>({<span class="dt">presentationId</span><span class="op">:</span> presId<span class="op">,</span> <span class="dt">requestBody</span><span class="op">:</span> {requests}})<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">&#39;Batch update failed:&#39;</span><span class="op">,</span> error)<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 쿼터 또는 권한 오류일 수 있으므로 1초 후 재시도</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> <span class="kw">new</span> <span class="bu">Promise</span>(r <span class="kw">=&gt;</span> <span class="pp">setTimeout</span>(r<span class="op">,</span> <span class="dv">1000</span>))<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> slides<span class="op">.</span><span class="at">presentations</span><span class="op">.</span><span class="fu">batchUpdate</span>({<span class="dt">presentationId</span><span class="op">:</span> presId<span class="op">,</span> <span class="dt">requestBody</span><span class="op">:</span> {requests}})<span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>재시도 로직을 추가하면 네트워크 오류나 일시적 쿼터 제한 시 안정성을
+높일 수 있다. 하지만 너무 자주 호출하면 쿼터를 초과할 수 있으므로 요청을
+배치하고 지수백오프(exponential backoff)를 적용한다.</p>
+<h4 id="워크플로우-데이터-슬라이드-자동-생성">5.3 워크플로우: 데이터 →
+슬라이드 자동 생성</h4>
+<ol type="1">
+<li><strong>데이터 준비</strong> – Google Sheets에 표 형태로 데이터를
+저장한다. 첫 행은 헤더, 나머지는 개별 슬라이드의 콘텐츠다.</li>
+<li><strong>Apps Script 작성</strong> – 스프레드시트의 데이터를 읽어
+Slides API 호출을 준비하는 스크립트를 작성한다. <code>doPost(e)</code>
+함수를 만들어 Webhook 형태로 호출할 수도 있다.</li>
+<li><strong>Slides API 호출</strong> – Apps Script에서
+Advanced Slides Service를 활성화하고
+<code>Slides.Presentations.batchUpdate()</code>를
+호출한다【900419576519041†L1309-L1323】. 여러 요청을 배열에 담아 한 번에
+전송한다.</li>
+<li><strong>권한 처리</strong> – 서비스 계정을 사용하는 경우 Slides
+파일에 해당 계정을 편집자로 공유하고, OAuth 승인을 받아야 한다.</li>
+<li><strong>결과 확인</strong> – 생성된 프레젠테이션 링크를 반환하거나
+이메일로 공유한다. 필요 시 Nano Banana Pro로 생성한 이미지들을
+API 요청의 <code>CreateImageRequest</code>에 포함시켜 완성도를
+높인다.</li>
+</ol>
+<h2 id="실행-절차-how-to-use">📚 실행 절차 (How to Use)</h2>
+<h3 id="초급-기본-슬라이드-제작">초급: 기본 슬라이드 제작</h3>
+<ol type="1">
+<li><strong>새 프레젠테이션 생성</strong> – Google Drive에서
+<strong>New &gt; Google Slides</strong>를 선택하거나 slides.new를
+입력한다.</li>
+<li><strong>테마 선택</strong> – 오른쪽 사이드바에서 새로운
+<strong>Design elements</strong> 패널을 열어 템플릿과 빌딩블록을
+선택한다【529246492776942†L87-L100】. 빌딩블록 라이브러리에는 아젠다,
+인용문, 통계 등 기본 요소가 포함되어
+있다【529246492776942†L94-L101】.</li>
+<li><strong>콘텐츠 삽입</strong> – 텍스트, 이미지, 도형, 차트, 표,
+다이어그램을 삽입한다. 그리드와 가이드를 활성화하여 정렬한다.</li>
+<li><strong>발표 설정</strong> – Q&amp;A 링크를 준비하고
+Presenter View에서 노트 및 타이머를
+설정한다【284837408948019†L61-L66】.</li>
+<li><strong>공유 및 내보내기</strong> – 협업자를 초대하고 PDF/PPTX로
+내보내는 방법을 익힌다.</li>
+</ol>
+<h3 id="중급-gemini-in-slides-활용">중급: Gemini in Slides 활용</h3>
+<ol type="1">
+<li>슬라이드를 열고 우측 상단 <strong>Ask Gemini</strong> 버튼을
+클릭한다.</li>
+<li>프롬프트 박스에 “추상적이고 현대적인 배경 이미지 생성 – 브랜드 색상
+#004080 사용, 16:9”와 같이 입력한다. 생성된 이미지 중 원하는 것을
+선택하여 삽입한다【477443691059783†L100-L114】.</li>
+<li>“@[보고서 링크] 요약해서 새 슬라이드를 만들어줘”와 같이 Drive 문서를
+참조하여 자동으로 슬라이드를 생성한다【477443691059783†L121-L143】.</li>
+<li>생성 결과를 검토하고 필요 시 <strong>Retry</strong> 또는
+<strong>Edit prompt</strong>로
+수정한다【477443691059783†L139-L145】.</li>
+<li>Nano Banana Pro 프롬프트 템플릿을 이용해 표지·인포그래픽·아이콘을
+반복 생성하여 일관된 스타일을 유지한다.</li>
+</ol>
+<h3 id="고급-자동화와-api">고급: 자동화와 API</h3>
+<ol type="1">
+<li><strong>Apps Script 프로젝트 생성</strong> – script.google.com에서
+새 프로젝트를 만들고 Slides API 및 Drive API 권한을 요청한다.</li>
+<li><strong>Advanced Slides Service 활성화</strong> – 에디터 상단
+메뉴에서 <strong>서비스 추가</strong>를 선택하고 <strong>Slides
+API</strong>를 활성화한다【900419576519041†L1309-L1326】.</li>
+<li><strong>데이터 읽기</strong> – 스프레드시트 또는 외부 JSON 데이터를
+가져와 슬라이드에 삽입할 콘텐츠를 준비한다.</li>
+<li><strong>batchUpdate 요청 구성</strong> – 슬라이드 생성, 텍스트 삽입,
+이미지 삽입 요청을 배열로 만들어 한 번에 전송한다. 요청 중 하나라도
+오류가 있으면 전체가 롤백되므로 입력 값을 철저히
+검증한다【222791837349504†L373-L391】.</li>
+<li><strong>배포 및 스케줄링</strong> – 정기적으로 보고서를 생성해야
+한다면 Apps Script 트리거(시간 기반)를 설정하거나 웹 앱으로 배포하여
+외부에서 호출할 수 있도록 한다.</li>
+</ol>
+<h2 id="검증테스트-validation">✅ 검증/테스트 (Validation)</h2>
+<h3 id="테스트-시나리오-표">테스트 시나리오 표</h3>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>시나리오</th>
+<th>입력</th>
+<th>기대 결과</th>
+<th>실패 신호</th>
+<th>복구 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>템플릿 기반 신규 덱 생성</strong></td>
+<td>새로운 Google Slides 파일 → Theme builder에서 레이아웃 수정 →
+슬라이드에 적용</td>
+<td>수정된 레이아웃이 모든 새로운 슬라이드에 적용됨</td>
+<td>레이아웃이 일부 슬라이드에 적용되지 않음</td>
+<td>Theme builder에서 레이아웃 저장 여부 확인 후 다시 적용</td>
+</tr>
+<tr class="even">
+<td><strong>Gemini로 이미지 생성 및 삽입</strong></td>
+<td>Ask Gemini 창에서 “Generate an image…” 프롬프트 입력</td>
+<td>Nano Banana Pro 기반 이미지가 생성되어 삽입됨</td>
+<td>이미지가 생성되지 않거나 품질이 낮음</td>
+<td>프롬프트를 구체화하거나 <strong>Retry</strong> 버튼
+사용【477443691059783†L139-L145】</td>
+</tr>
+<tr class="odd">
+<td><strong>데이터 → 슬라이드 자동 생성</strong></td>
+<td>Sheets 데이터, Apps Script 실행</td>
+<td>각 행이 개별 슬라이드로 생성되고 내용이 채워짐</td>
+<td>일부 슬라이드가 누락되거나 텍스트가 잘림</td>
+<td>데이터 범위 확인 및 요청 배열에서 텍스트 길이 조정</td>
+</tr>
+<tr class="even">
+<td><strong>발표 모드에서 Q&amp;A 실행</strong></td>
+<td>Presenter View → Audience tools → Start new</td>
+<td>Q&amp;A 링크 생성, 질문 제출 가능</td>
+<td>Q&amp;A 창이 표시되지 않음</td>
+<td>팝업 차단 해제, Workspace 관리자에게 Q&amp;A 권한 확인</td>
+</tr>
+<tr class="odd">
+<td><strong>Slides 녹화</strong></td>
+<td>Business Standard 계정으로 Record 버튼 클릭</td>
+<td>30분 이내 녹화 파일이 Drive에 저장됨</td>
+<td>Record 버튼이 보이지 않거나 녹화 오류</td>
+<td>계정 플랜 확인, Chrome/Edge 브라우저 사용, 저장 공간
+확보【117644713911694†L88-L103】</td>
+</tr>
+</tbody>
+</table>
+<h3 id="품질-체크리스트-카드">품질 체크리스트 (카드)</h3>
+<ul>
+<li><strong>🔎 사실/숫자 검증</strong> – 데이터 출처를 명시하고 숫자를
+다시 확인한다.</li>
+<li><strong>🧩 레이아웃 일관성</strong> – Theme builder와 레이아웃
+일관성을 유지하고 정렬/간격을 검사한다.</li>
+<li><strong>♿ 접근성</strong> – 텍스트 대비, 대체 텍스트, 폰트 크기,
+읽기 순서를 점검한다. Slides API의
+<code>UpdatePageElementAltTextRequest</code>로 대체 텍스트를
+설정한다.</li>
+<li><strong>🏷️ 브랜드 준수</strong> – 색상(HEX 값), 로고 사용, 폰트
+스타일이 가이드와 일치하는지 확인한다.</li>
+<li><strong>🧾 출처/라이선스 표기</strong> – Nano Banana Pro 생성 이미지
+사용 시 AI 생성임을 표시하고 SynthID 워터마크 정책을
+준수한다【895433497974522†L520-L538】.</li>
+</ul>
+<h2 id="추가-개선-optional-tips">💡 추가 개선 (Optional Tips)</h2>
+<h3 id="카드-1-업무-자동화-통합">카드 1 – 업무 자동화 &amp; 통합</h3>
+<ul>
+<li><strong>Sheets–Slides 자동화</strong>: Apps Script에서 Google Sheets
+데이터를 읽어 슬라이드를 자동으로 생성하는
+함수(<code>sheetToSlides()</code>)를 정기 트리거로 실행하면 보고서 작성
+시간을 크게 줄일 수 있다.</li>
+<li><strong>Docs→Slides 변환</strong>: Google Docs 문서의 구조적 내용을
+슬라이드로 변환하는 스크립트를 작성하여 회의록이나 보고서를 손쉽게
+프레젠테이션으로 만들 수 있다.</li>
+<li><strong>Drive 메타데이터 사용</strong>: Slides API와 Drive API를
+결합해 파일 목록과 권한을 관리하고, 슬라이드를 회사 Intranet에 자동으로
+업로드하는 프로세스를 구축한다.</li>
+</ul>
+<h3 id="카드-2-브랜드-템플릿-관리">카드 2 – 브랜드 템플릿 관리</h3>
+<ul>
+<li><strong>테마 파일 저장</strong>: 회사 브랜드 템플릿을 .potx 또는
+.pptx로 저장한 후 Google Slides에서 불러와 Theme builder를 통해 내장
+테마로 활용한다.</li>
+<li><strong>전사 배포</strong>: Google Drive에서 폴더 권한을 설정해 모든
+직원이 템플릿을 복사해 사용할 수 있도록 한다.</li>
+<li><strong>버전 업데이트 관리</strong>: 주요 브랜드 요소가 변경될
+때마다 기존 템플릿을 업데이트하고 변경 이력을 기록한다.</li>
+</ul>
+<h3 id="카드-3-발표자-스킬-향상">카드 3 – 발표자 스킬 향상</h3>
+<ul>
+<li><strong>발표 리허설</strong>: Presenter View의 타이머와 노트를
+활용하여 연습하고, Q&amp;A 기능을 통해 예상 질문을 수집한다.</li>
+<li><strong>애니메이션 최소화</strong>: 중요한 내용에만 애니메이션을
+사용하여 집중도를 높이고, 접근성을 위해 수동 전환 옵션을 제공한다.</li>
+<li><strong>음성 및 시각 보조</strong>: 녹화 기능으로 자신의 발표를
+확인하고 발음과 속도를 개선한다. 필요시 캡션 기능을 이용해 청각 장애가
+있는 청중을 지원한다.</li>
+</ul>
+<h3 id="카드-4-도구-조합-팁">카드 4 – 도구 조합 팁</h3>
+<ul>
+<li><strong>Gemini + Nano Banana Pro</strong>: Gemini in Slides로 기본
+슬라이드를 생성한 뒤 Nano Banana Pro 템플릿을 활용해 이미지와
+인포그래픽을 삽입하면 일관성 있는 AI 프레젠테이션을 빠르게 만들 수
+있다.</li>
+<li><strong>Slides + Vids</strong>: 2025년 출시된 Google Vids와 결합해
+슬라이드에서 영상을 생성하고 Nano Banana Pro로 썸네일을
+만든다【591886253299689†L127-L133】.</li>
+<li><strong>Apps Script + Vertex AI</strong>: Vertex AI의
+Nano Banana Pro API를 사용해 Apps Script 내에서 직접 이미지를 생성하고
+Slides API로 삽입하는 워크플로우를 구축한다 (고급). 이 때 서비스 계정을
+사용해 권한을 위임하고 쿼터 관리를 한다.</li>
+</ul>
+<hr />
+<h2 id="이미지-자료">📷 이미지 자료</h2>
+<p>실제 화면을 캡처할 수 없으므로 생성형 이미지와 자리표시자 이미지를
+활용하여 매뉴얼의 이해를 돕는다.</p>
+<h3 id="협업과-슬라이드-제작-개요">협업과 슬라이드 제작 개요</h3>
+<figure>
+<img src="%7B%7Bfile:file-EymkfDBszgkHreoKMEikNv%7D%7D"
+alt="협업 일러스트" />
+<figcaption aria-hidden="true">협업 일러스트</figcaption>
+</figure>
+<h3 id="인포그래픽-컨셉-아트">인포그래픽 컨셉 아트</h3>
+<figure>
+<img src="%7B%7Bfile:file-HjLd22z4LKazC4kajDC5JX%7D%7D"
+alt="인포그래픽 컨셉" />
+<figcaption aria-hidden="true">인포그래픽 컨셉</figcaption>
+</figure>
+<h3 id="자동화코드-상징-이미지">자동화·코드 상징 이미지</h3>
+<figure>
+<img src="%7B%7Bfile:file-UqaYRMLrwXUcX1x5QbqMX2%7D%7D"
+alt="자동화 코드 일러스트" />
+<figcaption aria-hidden="true">자동화 코드 일러스트</figcaption>
+</figure>
+<h3 id="gemini-ai로-생성한-추가-이미지">Gemini AI로 생성한 추가
+이미지</h3>
+<p>이미지와 인포그래픽이 슬라이드 제작에 주는 영감을 강화하기 위해
+다음과 같은 추가 예시를 포함한다:</p>
+<h4 id="ai-슬라이드-협업-아트">AI 슬라이드 협업 아트</h4>
+<figure>
+<img src="%7B%7Bfile:file-F5vmRhjeueaAYAcLWGSZ71%7D%7D"
+alt="AI 슬라이드 협업" />
+<figcaption aria-hidden="true">AI 슬라이드 협업</figcaption>
+</figure>
+<h4 id="자동화-파이프라인-다이어그램">자동화 파이프라인 다이어그램</h4>
+<figure>
+<img src="%7B%7Bfile:file-48a2LdKra9s4AEBTMyMxV5%7D%7D"
+alt="자동화 파이프라인" />
+<figcaption aria-hidden="true">자동화 파이프라인</figcaption>
+</figure>
+<h4 id="단계별-워크플로우-인포그래픽">단계별 워크플로우 인포그래픽</h4>
+<figure>
+<img src="%7B%7Bfile:file-5Ys8FmNDw6MRBFUwwdw3Ki%7D%7D"
+alt="워크플로우 인포그래픽" />
+<figcaption aria-hidden="true">워크플로우 인포그래픽</figcaption>
+</figure>
+<h3 id="이미지-자리표시자">이미지 자리표시자</h3>
+<p>실제 Slides UI를 캡처할 수 없는 경우 다음과 같은 자리표시자를 이용해
+설명을 보완할 수 있다:</p>
+<ul>
+<li><figure>
+<img src="PLACEHOLDER" alt="스크린샷: 테마 편집 화면" />
+<figcaption aria-hidden="true">스크린샷: 테마 편집 화면</figcaption>
+</figure></li>
+<li><figure>
+<img src="PLACEHOLDER" alt="스크린샷: Gemini 이미지 생성 창" />
+<figcaption aria-hidden="true">스크린샷: Gemini 이미지 생성
+창</figcaption>
+</figure></li>
+<li><figure>
+<img src="PLACEHOLDER" alt="스크린샷: Slides 자동화 코드 실행 결과" />
+<figcaption aria-hidden="true">스크린샷: Slides 자동화 코드 실행
+결과</figcaption>
+</figure></li>
+</ul>
+<p>위 이미지들은 추상적인 개념을 시각적으로 설명하기 위해 생성형 AI로
+제작한 것으로, 실제 UI를 정확히 보여주지는 않지만 프레임워크를 이해하는
+데 도움을 준다. 각 슬라이드 기능에 맞춰 적절한 이미지나 아이콘을 삽입할
+때 이러한 스타일을 참고하면 된다.</p>
+</body>
+</html>
